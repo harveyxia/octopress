@@ -21,4 +21,8 @@ This blog journals the thoughts of a restless mind.
 
 # Contact
 
-The best way to contact me is by [email](mailto:harvey@harveyxia.com). I am also on [Github](https://github.com/harveyxia) and [facebook](https://www.facebook.com/harvey.xia).
+<div class='social-media'>
+  <a class='trim' href="mailto:harvey@harveyxia.com"><img id='gmail' src="./images/gmail-64.png"></a>
+  <a class='trim' href="https://github.com/harveyxia"><img id='github' src="/images/github-64.png"></a>
+  <a class='trim' href="https://www.linkedin.com/in/harveyxia"><img id='linkedin' src="/images/linkedin-64.png"></a>
+</div>
