@@ -18,11 +18,15 @@
 // 	background: $main-color;
 // 	color: $white;
 // 	}
+// 	
+html {
+	border-top: $top-line-weight solid $black;
+}
 	
 body {
 	margin: 0;
 	padding: 0;
-	border-top: $top-line-weight solid $black;
+	border-top: $top-line-weight solid #AAAAAA;
 	font-family: $body-font;
 	font-size: $body-font-size;
 	color: $black;

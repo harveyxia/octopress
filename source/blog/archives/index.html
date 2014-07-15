@@ -5,6 +5,7 @@ footer: false
 ---
 
 <!-- BEGIN blog/archives/index.html -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 {% for post in site.posts reverse %}
 {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
 {% capture this_month %}{{ post.date | date: "%B" }}{% endcapture %}
@@ -21,5 +22,11 @@ footer: false
 
 {% include archive_post.html %}
 {% endfor %}
+
+<script>
+    jQuery(document).ready(function () {
+        jQuery('body').css('border-top-color', '#3D9970');
+    });
+</script>
 
 <!-- END blog/archives/index.html -->

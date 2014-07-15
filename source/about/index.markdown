@@ -26,3 +26,9 @@ This blog journals the thoughts of a restless mind.
   <a class='trim' href="https://github.com/harveyxia"><img id='github' src="/images/github-64.png"></a>
   <a class='trim' href="https://www.linkedin.com/in/harveyxia"><img id='linkedin' src="/images/linkedin-64.png"></a>
 </div>
+
+<script>
+    jQuery(function () {
+        jQuery('body').css('border-top-color', '#FF4136')
+    });
+</script>

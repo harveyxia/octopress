@@ -31,12 +31,13 @@ footer: true
 </div>
 
 <script>
-jQuery(function () {
-    jQuery('.photo').glisse({
-        changeSpeed: 550, 
-        speed: 500,
-        effect:'fade',
-        fullscreen: false
-    }); 
-});
+    jQuery(function () {
+        jQuery('body').css('border-top-color', '#7FDBFF')
+        jQuery('.photo').glisse({
+            changeSpeed: 550, 
+            speed: 500,
+            effect:'fade',
+            fullscreen: false
+        }); 
+    });
 </script>
