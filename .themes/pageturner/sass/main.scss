@@ -179,11 +179,12 @@ blockquote {
 	// and adjust article-width accordingly
 	width: 6000px;
 }
+
+
 	
 article {
 	// set to make measure (word count per line) ~ 78
 	width: 600px;
-
 	margin-right: 150px;
 	float: left;
 	// margin-bottom: $space-between-posts*1em;
@@ -259,9 +260,20 @@ article {
 		border: none;
 		color: $light-gray;
 		background-color: $light-gray;
+
 		}
 		
 	p {
+		text-rendering: optimizeLegibility;
+		-ms-word-break: break-all;
+	    word-break: break-all;
+
+	     // Non standard for webkit
+	     word-break: break-word;
+
+		-webkit-hyphens: auto;
+	    -moz-hyphens: auto;
+	    hyphens: auto;
 		.caption {
 			font-family: $caption-font-family;
 			font-size: $caption-font-size;
