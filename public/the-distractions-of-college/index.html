@@ -1,0 +1,338 @@
+
+<!doctype html>
+<!-- START OF _layouts/default.html -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" >
+		<meta content="width=device-width,initial-scale=1" name="viewport">
+		<meta content="Thoughts of a restless mind." name="description">
+		<meta content="Harvey Xia" name="author">
+		
+		<title>The Distractions of College &mdash; Harvey Xia</title>
+		<link href="/myfavicon.png" rel="icon">
+
+		<!-- Glisse Stylesheet -->
+		<link href="/stylesheets/glisse.css" rel="stylesheet" type="text/css">
+
+		<!-- Styles -->
+		<link href="/stylesheets/main.css" rel="stylesheet">
+		
+		<!-- Google webfonts -->
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Cousine">
+		
+		<!-- jQuery and plugins -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="/js/jquery.zclip.min.js"></script>
+
+		<!-- serial scroll -->
+		<script src="/js/jquery.scrollTo.min.js"></script>
+		<script src="/js/jquery.serialScroll.min.js"></script>
+		
+		<!-- Syntax highlighter -->
+		<link href="/stylesheets/prettify-hemisu.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="/js/prettify.js"></script>
+		
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-25655664-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+
+		<script src="/js/footnote.js" type="text/javascript"></script>
+
+		<!-- SNOWSTORM-->
+		<script src="/js/snowstorm-min.js"> </script>
+
+		<!-- snowstorm options -->
+		<script type="text/javascript">
+		snowStorm.autoStart = false;
+		snowStorm.snowColor = '#78B0F6';   // blue-ish snow!?
+		snowStorm.flakesMaxActive = 96;    // show more snow on screen at once
+		snowStorm.useTwinkleEffect = true; // let the snow flicker in and out of view
+		snowStorm.vMaxX = 5;
+		snowStorm.vMaxY = 3;
+		snowStorm.toggleSnow();
+		</script>
+
+		<!-- PHOTOS TAG / FANCY BOX PLUGIN -->
+
+		<script type="text/javascript">
+		    jQuery.noConflict(); // ender.js conflicts with jQuery
+		</script>
+		 
+		<!-- Load FancyBox -->
+		<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" />
+		<script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+		 
+		      <!-- Fix FancyBox style for OctoPress -->
+      <style type="text/css">
+      .fancybox-wrap { position: fixed !important; }
+      .fancybox-opened {
+        -webkit-border-radius: 4px !important;
+        -moz-border-radius: 4px !important;
+        border-radius: 4px !important;
+      }
+      .fancybox-close, .fancybox-prev span, .fancybox-next span {
+        background-color: transparent !important;
+        border: 0 !important;
+      }
+      </style>
+
+		 
+		<!-- Custom Scripts -->
+		<script language="Javascript" type="text/javascript">
+		    // ender.js gobbles jQuery's ready event: Use ender.js $ instead
+		    jQuery(document).ready(function() {
+		        jQuery(".fancybox").fancybox();
+		    });
+		</script>
+
+		<!--<link href="http://feeds.feedburner.com/turkeltaub" rel="alternate" title="Harvey Xia" type="application/rss+xml" />-->
+
+		<script type="text/javascript">	
+		// Easing equation, borrowed from jQuery easing plugin
+		// http://gsgd.co.uk/sandbox/jquery/easing/
+		jQuery.easing.easeOutQuart = function (x, t, b, c, d) {
+			return -c * ((t=t/d-1)*t*t*t - 1) + b;
+		};
+		
+		jQuery(function( $ ){
+			/**
+			 * Most jQuery.serialScroll's settings, actually belong to jQuery.ScrollTo, check it's demo for an example of each option.
+			 * @see http://flesler.demos.com/jquery/scrollTo/
+			 * You can use EVERY single setting of jQuery.ScrollTo, in the settings hash you send to jQuery.serialScroll.
+			 */
+			
+			/**
+			 * The plugin binds 6 events to the container to allow external manipulation.
+			 * prev, next, goto, start, stop and notify
+			 * You use them like this: $(your_container).trigger('next'), $(your_container).trigger('goto', [5]) (0-based index).
+			 * If for some odd reason, the element already has any of these events bound, trigger it with the namespace.
+			 */		
+			
+			/**
+			 * IMPORTANT: this call to the plugin specifies ALL the settings (plus some of jQuery.ScrollTo)
+			 * This is done so you can see them. You DON'T need to specify the commented ones.
+			 * A 'target' is specified, that means that #screen is the context for target, prev, next and navigation.
+			 */
+			$('.wrap').serialScroll({
+				target:'.outer-scroll',
+				items:'article', // Selector to the items ( relative to the matched elements, '#sections' in this case )
+				prev:'a.prev',// Selector to the 'prev' button (absolute!, meaning it's relative to the document)
+				next:'a.next',// Selector to the 'next' button (absolute too)
+				axis:'xy',// The default is 'y' scroll on both ways
+				navigation:'#navigation li a',
+				duration:700,// Length of the animation (if you scroll 2 axes and use queue, then each axis take half this time)
+				force:true, // Force a scroll to the element specified by 'start' (some browsers don't reset on refreshes)
+				
+				//queue:false,// We scroll on both axes, scroll both at the same time.
+				//event:'click',// On which event to react (click is the default, you probably won't need to specify it)
+				//stop:false,// Each click will stop any previous animations of the target. (false by default)
+				//lock:true, // Ignore events if already animating (true by default)		
+				//start: 0, // On which element (index) to begin ( 0 is the default, redundant in this case )		
+				//cycle:true,// Cycle endlessly ( constant velocity, true is the default )
+				//step:1, // How many items to scroll each time ( 1 is the default, no need to specify )
+				//jump:false, // If true, items become clickable (or w/e 'event' is, and when activated, the pane scrolls to them)
+				//lazy:false,// (default) if true, the plugin looks for the items on each event(allows AJAX or JS content, or reordering)
+				//interval:1000, // It's the number of milliseconds to automatically go to the next
+				//constant:true, // constant speed
+				
+				onBefore:function( e, elem, $pane, $items, pos ){
+					/**
+					 * 'this' is the triggered element 
+					 * e is the event object
+					 * elem is the element we'll be scrolling to
+					 * $pane is the element being scrolled
+					 * $items is the items collection at this moment
+					 * pos is the position of elem in the collection
+					 * if it returns false, the event will be ignored
+					 */
+					 //those arguments with a $ are jqueryfied, elem isn't.
+					e.preventDefault();
+					if( this.blur )
+						this.blur();
+					$pane.height( elem.clientHeight )
+				},
+				onAfter:function( elem ){
+					//'this' is the element being scrolled ($pane) not jqueryfied
+				}
+			});
+		});
+	</script>
+			
+		
+	</head>
+	<body onload="prettyPrint()">
+	
+		<div class="wrap">
+	
+			<header>
+				<div class="title"><a class="blogtitle" style="color:#333;" href="/">Harvey Xia</a></div>
+				
+				<div class="navi">
+					<ul>
+						<li><a href="/">Blog</a></li>
+						<li><a href="/travel">Travel</a></li>
+						<li><a href="/photography">Photography</a></li>
+						<li><a href="/blog/archives">Archives</a></li>
+						<li><a href="/about">About</a></li>
+					</ul>
+				</div> <!-- // .navi -->
+
+				
+			</header>
+			<section class="outer-scroll">
+				<section class="inner-scroll">
+		
+				<!-- START OF _layouts/post.html -->
+
+    <!-- START OF _includes/article.html -->
+<article>
+	<header>
+		<h1><a href="/the-distractions-of-college">The Distractions of College</a></h1>
+		<time>November 26, 2013</time>
+	</header>
+		<div class="content">
+			<p>I&#8217;ve been trying to write a blog post for a few weeks now, but I couldn&#8217;t seem to follow through with it, for reasons that I&#8217;ll try my best to articulate. My hope is that trying to put these nebulous feelings into words will help me figure out just what it is that I&#8217;ve been feeling, it seems, more and more intensely since the beginning of college — this unsettling feeling that I&#8217;m losing some nameless quality of myself, the value of which I can intuitively sense but can&#8217;t articulate; an unsettling feeling that colors all of my experiences with the question <em>Does this matter?</em>, and an urgency to do and experience things that, beyond a doubt, have meaning. I realize that all of this sounds very existential. I would agree. But what I&#8217;m experiencing can&#8217;t simply be pigeonholed into the stereotypical &#8220;existential crisis.&#8221; From talking with friends and reading various essays, <sup id='fnref:1'><a href='#fn:1' rel='footnote'>1</a></sup> it seems that I&#8217;m not the only one struggling with the questions I&#8217;m about to raise. (In fact, what inspired me to write this in the first place was an anonymous email that a Yale student sent out commenting on Yale&#8217;s culture).</p>
+
+<p>Late on a Friday night after an exhausting week, I was determined to write a blog post much like the one I&#8217;m attempting now. I wrote the following:</p>
+
+<p><img class="center" src="/images/calvinandhobbes_summer.gif"></p>
+
+<blockquote><blockquote><p>I love this sentiment in <em>Calvin and Hobbes</em>, the idea that in certain moments, the best thing to do is to do nothing at all. Of course, here Calvin and Hobbes aren&#8217;t literally doing nothing at all; they&#8217;re sitting back and taking in the beautiful summer day. It makes me think of those perfect summer days where the tree you are sitting under casts a generous shade while the sun above sets the surrounding scenary in the most flattering light. Cool grass between your fingers and toes, gentle winds rustling the leaves. Everything feels, sounds, and looks perfect, invoking a feeling of complete carefree laziness. At its very best, it feels as if you&#8217;ve been transported to a place where your day-to-day worries are so distant that they cease to exist, where being lazy is the virtue.</p>
+
+<p>In the quieter, less hectic moments of my college life, I find myself missing that feeling more and more. At college, my attention is constantly drawn outwards towards classes, activities, internships, and all of that other stuff that American college students are expected to be doing. In high school I suffered through the college application process with the hope that once I got to college, I could focus on learning and making friends and growing. But it doesn&#8217;t end. I guess this could be the beginning of what they call the &#8220;rat race.&#8221; There&#8217;s no more time to just be, in the most primitive sense of the word. There&#8217;s no time to sit in bed and read, to listen to music, or to go for a walk on a nice autumn day. Rather, there is time, but that free time is treated as a luxury too valuable for wasting on &#8220;doing nothing.&#8221;
+For the college student, even his leisure time is&#8230;</p></blockquote></blockquote>
+
+<p>I stopped midsentence, choosing instead to numb my mind by browsing Reddit and playing Dota. It wasn&#8217;t that I didn&#8217;t want to keep writing, but that it was a Friday night — one of the few times during the week that I get to kickback and give my brain a desperately needed rest after a long week of overclocking it on psets and readings. Leisure writing is, of course, a kind of break from the monotony of school and homework. It&#8217;s an escape from the restricted, logical, and analytical thinking that my classes require. It&#8217;s a way to step back from it all — to enter a quiet, isolated, and introspective mode. Writing takes me out of the groundlevel perspective of everyday life to an elevated viewpoint, one that is one step removed from it all, allowing me to think about myself and my life more honestly and deliberately.</p>
+
+<p>Why couldn&#8217;t I get myself to write more than two paragraphs? Because reflective first-person writing is taxing on the mind in the same way that my classes are. While the reflective me was desperate to have itself heard, the rest of me was simply too tired, not willing to expend effort on anything. I could instead browse reddit while my mind slept. <em>After all,</em> the practical me thought, <em>it&#8217;s not like I would get any real reward from writing something just for the sake of writing it. Why expend effort on anything that has no return value?</em> But this is just the harmful sort of belief that I&#8217;ve let myself gradually and unconsciously adopt since I&#8217;ve come to Yale. The truth is, reflective self-expression takes an enormous amount of deliberate effort, and moreso, the capacity for insightful thinking diminishes with lack of use. Being constantly preoccupied with classes and extracurriculars and events, I gradually stopped journaling and writing and enjoying  lazy Sunday afternoons. There was always something &#8220;more productive&#8221; to do.</p>
+
+<p>This is what I&#8217;ve slowly been realizing since college started, that Yale&#8217;s academic and social culture and my own lack of effort can turn me away from the creative, self-reflective aspect of me. The aspect I think of when I&#8217;m asked to describe myself. The part of me I consider as the source of who I am, as my persistent anchor of identity. But &#8220;lack of effort&#8221; doesn&#8217;t quite characterize it properly; it&#8217;s more like my lack of consciously being aware of these external distractions and giving myself more time to reflect. I think this is the root of that unsettling feeling that I&#8217;m losing something important of myself; my day to day college life leaves me so tired that I make excuses when I do have time to do some hard thinking by myself.</p>
+
+<p>At college, it seems, everyone&#8217;s attention is drawn outward and away from themselves, and the culture glorifies this. You&#8217;re a rockstar if your calendar is filled to the brim with overlapping commitments, your extracurricular activites outnumber your classes, you&#8217;ve secured a prestigious  internship. And the ideal social life is very much analogous to this: you&#8217;re doing it right if your social nights consist of hopping from one party to the next and on to Toad&#8217;s, your romantic life (or, sex life, rather) consists of hooking up with various people, especially if others consider them desirable, and then waking up the next morning retelling the events of last night at brunch in the same humorously self-deprecating way that is really just a veil for your own pride that you are, in fact, living up the college life.</p>
+
+<p>And that&#8217;s that, without a second thought. Brunch ends and you automatically move on to the next set of tasks: completing those homework assignments. And the weeks repeat like this over and over. There&#8217;s not a moment to spare in between, no time to take a breath and step back from it all. Life is lived passively, reflexively, and robotically from one moment to the next. The mind loses itself in things that seem important but upon examination are really just inflated trivialities. And the effect of college, it seems, is to perpetuate this type of thinking in us, the type that distracts us from considering and pursuing what really matters.</p>
+
+<p>Now, what really matters is of course different for all of us, but I do think that for everyone, what matters comes into focus only through hard and honest thought — thinking in the normative mode, looking for an answer in a domain where it isn&#8217;t clear whether an answer even exists, let alone what that answer is. It demands the courage to revolt against the values that are given to us and instead exercising one&#8217;s existentialist agency in defining value where there is none to begin with.</p>
+
+<p>And here is where I find myself getting lost over and over again, feeling discouraged and wondering whether thinking this idealistic nonsense about &#8220;what matters&#8221; is even worth my precious time. Not to mention, this kind of introspection can be incredibly uncomfortable. Looking at oneself honestly and critically takes a very unique kind of courage that takes time to develop. Reevaluating what I really care about means putting at risk the very principles that I&#8217;ve lived by, and that means admitting the possibility that I&#8217;ve been mistaken. In short, reflecting on one&#8217;s values and decisions places oneself in a most vulnerable state. Lately I&#8217;ve been asking myself questions like, What does it mean for me to feel shame at getting a low grade despite trying my hardest? Why do I measure myself relative to the academic/professional success of my peers? How come I&#8217;ve known friend X for so long but we never talk about anything beyond what&#8217;s mundane and humorous?</p>
+
+<p>I&#8217;m guessing that many college students never reach the point of uncomfortable self-questioning and unconsciously adopt the values that are most prevalent in their culture. At Yale, these tend to be material values; high grades, an impressive resume, lots of &#8220;friends&#8221;, and a hyperactive social life. After Yale, later in life, what&#8217;s important will be professional success, reputation, a six-digit salary, and the type of decadent lifestyle that would make any onlooker envious. We&#8217;ve all encountered this type of careerist attitude. And I&#8217;m not pretending that I&#8217;m totally immune to this attitude either. There does exist a very real necessity in securing financial stability. But the importance of material success is exaggerated. I usually only ever hear mention of the following career paths: becoming a doctor, lawyer, engineer, programmer, banker, and consultant. At dinner parties, when parents ask &#8220;What&#8217;s your major?&#8221;, they&#8217;re expecting to hear something like &#8220;econ&#8221; or &#8220;computer science&#8221; or &#8220;premed&#8221;. When I say &#8220;philosophy,&#8221; they give me a strange look and they don&#8217;t know what to say to me.</p>
+
+<p>Usually the response I get to this thought is, &#8220;Who are you to judge those who value professional success? You don&#8217;t know their financial background. They could very well be trying to improve the quality of life for their family.&#8221; But even in extreme cases my point still holds: valuing material success does not require giving up one&#8217;s more fundamental values: friendship, family, identity, etc. Material success should only ever be considered as a means to a an end, and never as an end in itself. Spending four years at a place like Yale and then many more years in the job market makes it easy to forget that principle.</p>
+
+<p>Another result of the lack of introspective thinking is that students become unable to talk their values. Granted, sharing one&#8217;s core values isn&#8217;t something that we feel comfortable doing with just anybody. It&#8217;s one thing to refrain from talking about one&#8217;s deepest beliefs with mere acquaintances;  but what about between friends who have known each other for years? What are two long-time friends to each other if they can&#8217;t share their thoughts about what they care about? I take it that these sterile, surface-level friendships persist when neither of the two friends take the risk of talking about non-trivial matters that require exposing one&#8217;s values and emotions. These conversations can be awkward and painful, but with a true friend, they shouldn&#8217;t be.</p>
+
+<p>I&#8217;ve had the privilege of meeting some incredibly insightful and interesting students during my time here. But always, I find myself wishing that we could talk for longer and about things other than what we&#8217;re doing over the summer and how our classes are going. I find myself wishing that we were in a culture where it wasn&#8217;t socially unacceptable to bring up deeper, more personal, perhaps  more depressing issues when they&#8217;re weighing on either person&#8217;s mind and to converse honestly about them.</p>
+
+<p>I realize that I can go on for paragraphs and paragraphs, iterating on this point indefinitely, each one digressing a little more from the next but all motivated by the same worries. It&#8217;s always a challenge for me to package thoughts on this subject into something coherent and elegant. If these questions were that easy to understand, these worries wouldn&#8217;t be eating away at me all the time.</p>
+
+<p>The most salient point I hoped to articulate was this: creative, self-reflective, introspective thinking is immensely difficult, especially in an environment where my time and energy is nearly depleted by external responsibilities. It takes an additional strength in refusing to let one&#8217;s environment take away one&#8217;s capacity for this kind of thinking. Knowing how difficult it is at college, I need to spend more time away from all of the work and noise and distractions. I need to spend more time at the piano, more time reading, taking walks on beautiful fall days, talking to get to know someone, writing for myself; all of it as a way to step back from it all and see how far I&#8217;ve come and where I am headed.</p>
+
+<p>And just as importantly, pursuing experiences to get to know myself and the world. Chasing those experiences that keep alive our innate sensibility to the beauty of the world, a sensibility that dulls with age and with time. Revolting against the incessant demands of practicality as a proud romantic, eyes directed toward the sublime. Because what is it all for if we can no longer dream?</p>
+
+<div class="footnotes">
+    <ol>
+        <li id='fn:1'><p> <a href="http://www.freewebs.com/lanzbom/EBWhiteLakeEssay.pdf">Once More to the Lake by E.B. White</a> <br> <a href="http://web.ics.purdue.edu/~drkelly/DFWKenyonAddress2005.pdf">Kenyon Commencement Speech by David Foster Wallace</a> <br> <a href="http://www.harveyxia.com/mr-mcculloughs-2012-commencement-speech/">Wellesley High School 2012 Commencement Speech by David McCullough Jr.</a> <br> <a href="http://thoughtcatalog.com/charles-warnke/2011/01/dont-date-a-girl-who-reads/">You Should Date an Illiterate Girl by Charles Warnke</a> <br> <a href="http://opinionator.blogs.nytimes.com/2009/09/17/the-referendum/?_r=1">The Referendum by Tim Kreider</a> <br> <a href="http://mitadmissions.org/blogs/entry/meltdown">Meltdown by Lydia K.</a> <br>
+<a href='#fnref:1' rev='footnote'>↩</a></p>
+</li>
+    </ol>
+</div>
+
+
+		</div>
+	<footer>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=226764337380094";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+
+		<div style="display:inline-block">
+			
+
+
+		
+
+
+
+  
+		
+			Tagged under
+		
+    <a class='category' href='/blog/categories/essays/'>Essays</a>
+	
+
+
+		</div>
+
+		<div style="top:5px; float:right;"class="fb-like" data-href="http://www.harveyxia.com//the-distractions-of-college" data-width="500" data-layout="button_count" data-action="recommend" data-show-faces="true" data-share="true"></div>
+	
+	
+	</footer>
+	
+</article>
+<!-- END OF _includes/article.html -->
+
+
+<!-- END OF _/layouts/post.html -->
+
+
+				</section>
+
+			</section>
+		
+			<footer>
+				Copyright &copy; 2015
+<a href="https://plus.google.com/110002267502068018090?rel=author">
+
+	Harvey Xia
+
+</a>
+			</footer>
+			
+		</div> <!-- // .wrap -->
+	</body>
+	<script>
+		jQuery(document).ready(function() {
+			// Make images center
+			jQuery('p:has(img)').css('text-align', 'center');
+			
+			// Add the image's title attribute as a caption
+			// jQuery('p:has(img)').append(function () {
+			// 	return '<div class="caption">' + jQuery('img', this).attr('title') + '</div>';
+			// });
+			
+			// Prettify code
+			jQuery('code').addClass('prettyprint');
+			jQuery('pre code').addClass('linenums');
+			
+			// Copy to clipboard with button
+			jQuery('pre:has(code)').prepend(function(){
+				return '<div class="clip-btn">copy to clipboard</div>';
+			});
+			jQuery('.clip-btn').zclip({
+				path:'/js/ZeroClipboard.swf',
+				copy: jQuery(this).next('code').text(),
+				afterCopy: function(){
+					jQuery(this).replaceWith('<div class="clip-btn">copied!');
+					}
+			});
+		});
+	</script>
+</html>
+<!-- END OF _layouts/default.html -->

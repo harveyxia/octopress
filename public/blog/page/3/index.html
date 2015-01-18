@@ -1,0 +1,578 @@
+
+<!doctype html>
+<!-- START OF _layouts/default.html -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" >
+		<meta content="width=device-width,initial-scale=1" name="viewport">
+		<meta content="Thoughts of a restless mind." name="description">
+		<meta content="Harvey Xia" name="author">
+		
+		<title>Harvey Xia</title>
+		<link href="/myfavicon.png" rel="icon">
+
+		<!-- Glisse Stylesheet -->
+		<link href="/stylesheets/glisse.css" rel="stylesheet" type="text/css">
+
+		<!-- Styles -->
+		<link href="/stylesheets/main.css" rel="stylesheet">
+		
+		<!-- Google webfonts -->
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Cousine">
+		
+		<!-- jQuery and plugins -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="/js/jquery.zclip.min.js"></script>
+
+		<!-- serial scroll -->
+		<script src="/js/jquery.scrollTo.min.js"></script>
+		<script src="/js/jquery.serialScroll.min.js"></script>
+		
+		<!-- Syntax highlighter -->
+		<link href="/stylesheets/prettify-hemisu.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="/js/prettify.js"></script>
+		
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-25655664-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+
+		<script src="/js/footnote.js" type="text/javascript"></script>
+
+		<!-- SNOWSTORM-->
+		<script src="/js/snowstorm-min.js"> </script>
+
+		<!-- snowstorm options -->
+		<script type="text/javascript">
+		snowStorm.autoStart = false;
+		snowStorm.snowColor = '#78B0F6';   // blue-ish snow!?
+		snowStorm.flakesMaxActive = 96;    // show more snow on screen at once
+		snowStorm.useTwinkleEffect = true; // let the snow flicker in and out of view
+		snowStorm.vMaxX = 5;
+		snowStorm.vMaxY = 3;
+		snowStorm.toggleSnow();
+		</script>
+
+		<!-- PHOTOS TAG / FANCY BOX PLUGIN -->
+
+		<script type="text/javascript">
+		    jQuery.noConflict(); // ender.js conflicts with jQuery
+		</script>
+		 
+		<!-- Load FancyBox -->
+		<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" />
+		<script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+		 
+		      <!-- Fix FancyBox style for OctoPress -->
+      <style type="text/css">
+      .fancybox-wrap { position: fixed !important; }
+      .fancybox-opened {
+        -webkit-border-radius: 4px !important;
+        -moz-border-radius: 4px !important;
+        border-radius: 4px !important;
+      }
+      .fancybox-close, .fancybox-prev span, .fancybox-next span {
+        background-color: transparent !important;
+        border: 0 !important;
+      }
+      </style>
+
+		 
+		<!-- Custom Scripts -->
+		<script language="Javascript" type="text/javascript">
+		    // ender.js gobbles jQuery's ready event: Use ender.js $ instead
+		    jQuery(document).ready(function() {
+		        jQuery(".fancybox").fancybox();
+		    });
+		</script>
+
+		<!--<link href="http://feeds.feedburner.com/turkeltaub" rel="alternate" title="Harvey Xia" type="application/rss+xml" />-->
+
+		<script type="text/javascript">	
+		// Easing equation, borrowed from jQuery easing plugin
+		// http://gsgd.co.uk/sandbox/jquery/easing/
+		jQuery.easing.easeOutQuart = function (x, t, b, c, d) {
+			return -c * ((t=t/d-1)*t*t*t - 1) + b;
+		};
+		
+		jQuery(function( $ ){
+			/**
+			 * Most jQuery.serialScroll's settings, actually belong to jQuery.ScrollTo, check it's demo for an example of each option.
+			 * @see http://flesler.demos.com/jquery/scrollTo/
+			 * You can use EVERY single setting of jQuery.ScrollTo, in the settings hash you send to jQuery.serialScroll.
+			 */
+			
+			/**
+			 * The plugin binds 6 events to the container to allow external manipulation.
+			 * prev, next, goto, start, stop and notify
+			 * You use them like this: $(your_container).trigger('next'), $(your_container).trigger('goto', [5]) (0-based index).
+			 * If for some odd reason, the element already has any of these events bound, trigger it with the namespace.
+			 */		
+			
+			/**
+			 * IMPORTANT: this call to the plugin specifies ALL the settings (plus some of jQuery.ScrollTo)
+			 * This is done so you can see them. You DON'T need to specify the commented ones.
+			 * A 'target' is specified, that means that #screen is the context for target, prev, next and navigation.
+			 */
+			$('.wrap').serialScroll({
+				target:'.outer-scroll',
+				items:'article', // Selector to the items ( relative to the matched elements, '#sections' in this case )
+				prev:'a.prev',// Selector to the 'prev' button (absolute!, meaning it's relative to the document)
+				next:'a.next',// Selector to the 'next' button (absolute too)
+				axis:'xy',// The default is 'y' scroll on both ways
+				navigation:'#navigation li a',
+				duration:700,// Length of the animation (if you scroll 2 axes and use queue, then each axis take half this time)
+				force:true, // Force a scroll to the element specified by 'start' (some browsers don't reset on refreshes)
+				
+				//queue:false,// We scroll on both axes, scroll both at the same time.
+				//event:'click',// On which event to react (click is the default, you probably won't need to specify it)
+				//stop:false,// Each click will stop any previous animations of the target. (false by default)
+				//lock:true, // Ignore events if already animating (true by default)		
+				//start: 0, // On which element (index) to begin ( 0 is the default, redundant in this case )		
+				//cycle:true,// Cycle endlessly ( constant velocity, true is the default )
+				//step:1, // How many items to scroll each time ( 1 is the default, no need to specify )
+				//jump:false, // If true, items become clickable (or w/e 'event' is, and when activated, the pane scrolls to them)
+				//lazy:false,// (default) if true, the plugin looks for the items on each event(allows AJAX or JS content, or reordering)
+				//interval:1000, // It's the number of milliseconds to automatically go to the next
+				//constant:true, // constant speed
+				
+				onBefore:function( e, elem, $pane, $items, pos ){
+					/**
+					 * 'this' is the triggered element 
+					 * e is the event object
+					 * elem is the element we'll be scrolling to
+					 * $pane is the element being scrolled
+					 * $items is the items collection at this moment
+					 * pos is the position of elem in the collection
+					 * if it returns false, the event will be ignored
+					 */
+					 //those arguments with a $ are jqueryfied, elem isn't.
+					e.preventDefault();
+					if( this.blur )
+						this.blur();
+					$pane.height( elem.clientHeight )
+				},
+				onAfter:function( elem ){
+					//'this' is the element being scrolled ($pane) not jqueryfied
+				}
+			});
+		});
+	</script>
+			
+		
+	</head>
+	<body onload="prettyPrint()">
+	
+		<div class="wrap">
+	
+			<header>
+				<div class="title"><a class="blogtitle" style="color:#333;" href="/">Harvey Xia</a></div>
+				
+				<div class="navi">
+					<ul>
+						<li><a href="/">Blog</a></li>
+						<li><a href="/travel">Travel</a></li>
+						<li><a href="/photography">Photography</a></li>
+						<li><a href="/blog/archives">Archives</a></li>
+						<li><a href="/about">About</a></li>
+					</ul>
+				</div> <!-- // .navi -->
+
+				
+			</header>
+			<section class="outer-scroll">
+				<section class="inner-scroll">
+		
+				<!-- START OF index.html -->
+
+	
+		
+		<!-- START OF _includes/article.html -->
+<article>
+	<header>
+		<h1><a href="/not-so-instant-ramen">Not-so-instant ramen</a></h1>
+		<time>July 15, 2013</time>
+	</header>
+		<div class="content">
+			<p>Until a few weeks ago, I thought that &#8216;ramen&#8217; referred only to that packaged stuff notorious for sustaining students through their college years. I had no idea that &#8216;instant ramen&#8217; was based off of a real Japanese dish. A friend told me about a small, locally famous ramen shop in Porter Square, Cambridge. &#8220;Give yourself some time&#8221;, she said. &#8220;You&#8217;ll be waiting in line for a while.&#8221;</p>
+
+<p>Turns out there are two ramen shops in Porter Square, both of which are regarded as the best ramen in the Boston area. The one my friend was referring to is called &#8220;Yume Wo Katare.&#8221; The one I ended up going to is called &#8220;Sapporo Ramen.&#8221; Yume Wo Katare is closed over the summer. I guess its Japanese chef, who apparently has opened multiple restaurants in Japan, is visiting Japan.</p>
+
+<p>Sapporo Ramen is a charming little shop hidden away in a small shopping center. It&#8217;s the size of a living room, and it&#8217;s tiny kitchen is tucked away in a corner. There are only about 7 or 8 tables, and a line usually stretches down the hallway. I have always been a big fan of instant ramen, especially the fiery Korean Shin brand. I was blown away by my first real bowl of ramen, served in a large clay bowl, filled to the brim with yellow noodles and steaming broth. Ramen looks very attractive when served with all its toppings laid out nicely. I told myself to remember to snap a picture before I dug in, but my appetite got the better of me. Caitlin reminded me, but it was too late.</p>
+
+<p><img class="center" src="/images/not-so-instant_ramen/sapporo_ramen.jpg" title="'Before I ate it all'" ></p>
+
+<p>The broth, brewed with pork bones and aromatics for over 10 hours, tastes amazing — a savory and salty umami heaven. The yellow wheat noodles are what the name &#8216;ramen&#8217; refers to. They are made using <a href="http://en.wikipedia.org/wiki/Ramen#Noodles">kansui</a>, a mix of sodium carbonate and potassium carbonate. The alkalinity of these two compounds keeps the noodles from becoming mushy when sitting in the hot broth and helps them maintain the chewiness that makes them so satisfying to munch on. On top of the broth and ramen, a number of toppings are placed. This <a href="http://en.wikipedia.org/wiki/Ramen#Regional_variations">depends on the style</a>. The noodles I ordered had pork, beansprouts, scallions, nori (dried seaweed), corn, and half a boied egg.</p>
+
+<p>The ramen was so good I finished the whole bowl, including the soup. I felt bloated afterwards, but it was worth it. During another visit I ordered double the amount of noodles and finished all of it, plus the broth, plus Caitlin&#8217;s broth. Again, worth it. Besides, it&#8217;s customary in Japanese culture to finish everything on your plate.</p>
+
+<p>We were so impressed by these noodles that Caitlin and I decided to try our hand at them. I followed this <a href="http://norecipes.com/blog/tonkotsu-ramen-recipe/#sthash.ffFEVWKz.00fOSJvo.dpbs">recipe</a>, which I highly recommend if you want to try making ramen from scratch. The recipe is for <a href="http://en.wikipedia.org/wiki/Ramen#Soup">tonkotsu</a> style ramen, characterized by its creamy, fat and collagen rich pork broth. The author even has a recipe for making your own ramen noodles from scratch.</p>
+
+<p>I have to say, making the two bowls of ramen was one of the more challenging and stressful things I&#8217;ve done. The broth itself took three hours to prepare and involved cleaning the bones and purifying the blood from them. We used a pressure cooker to speed up the process of extracting that yummy umami flavor from the bones. The chasu required about an hour of slow simmering in a rich braising liquid (miso, soy sauce, sake, mirin, cinnamon bark, star anise, sugar, etc.) In fact, most of the sauces required were ridiculously complicated, requiring a vast number of ingredients, most of which I had never heard of before. I guess that&#8217;s where the uniquely memorable flavor comes from.</p>
+
+<p>Preparing it required a lot of attention, multitasking, and care. The details mattered, from mincing the fatback small enough that it would dissolve properly (giving the broth an added creaminess) to slicing the scallions in the right shape.</p>
+
+<p>After two days of preparation, it was pretty satisfying to see the finished bowls.</p>
+
+<p><img class="center" src="/images/not-so-instant_ramen/homemade_ramen.jpg" title="'One of the greatest achievements to date'" ></p>
+
+<p>Attention to the details is what defines great ramen, and from experience, I can say that this dish has a very high skill cap. What I mean by that is that unlike some foods (making toast, for instance), ramen can vary greatly in its quality — from great to legendary. It&#8217;s also a dish that gives the chef lots of space for innovation, both in preparation method and choice of ingredients. There are so many styles of ramen out there, and each shop has its own signature variations that define the dish.</p>
+
+<p>I plan on traveling to Japan in the not-too-distant-future to experience first-hand its culture, history, and its world-renowned food. Hopefully it&#8217;s not too naive of me to work towards perfecting a ramen that someday I&#8217;ll get to call my own. This is the beginning of my story of ramen. May it unfold one slurp at a time.</p>
+
+		</div>
+	<footer>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=226764337380094";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+
+		<div style="display:inline-block">
+			
+
+
+		
+
+
+
+  
+		
+			Tagged under
+		
+    <a class='category' href='/blog/categories/cooking/'>Cooking</a>
+	
+
+
+		</div>
+
+		<div style="top:5px; float:right;"class="fb-like" data-href="http://www.harveyxia.com//not-so-instant-ramen" data-width="500" data-layout="button_count" data-action="recommend" data-show-faces="true" data-share="true"></div>
+	
+	
+	</footer>
+	
+</article>
+<!-- END OF _includes/article.html -->
+
+	
+		
+		<!-- START OF _includes/article.html -->
+<article>
+	<header>
+		<h1><a href="/learning-to-cook-for-an-epicurean">Learning to cook for an epicurean</a></h1>
+		<time>July 01, 2013</time>
+	</header>
+		<div class="content">
+			<blockquote><p>&#8220;The flesh receives as unlimited the limits of pleasure; and to provide it requires unlimited time. But the mind, intellectually grasping what the end and limit of the flesh is, and banishing the terrors of the future, procures a complete and perfect life, and we have no longer any need of unlimited time. Nevertheless the mind does not shun pleasure, and even when circumstances make death imminent, the mind does not lack enjoyment of the best life.&#8221;</p>
+
+<p>— Epicurus, Principle Doctrines—</p></blockquote>
+
+<p>I was confused when I first heard the term &#8220;epicurean&#8221; used to describe someone who pursues sensual pleasures (especially with respect to food). There is the common misconcenption that the ancient Epicureans, since they believed that pleasure is the chief Good, advocated pursuing pleasure without limitation. Epicurus actually considered freedom from fear and pain as the optimum state. This required the individual to exercise prudence and restraint, because enjoying too much of a good thing can decrease satisfaction and increase desire. So how come the name of a philosophical doctrine that preaches moderation and condemns excess is used to describe those who love gourmet food? But before I offer my thoughts on this, I&#8217;ll first talk about my new hobby.</p>
+
+<p>I&#8217;ve always been curious about cooking from a distance; on cooking shows, I would admire chefs like Gordon Ramsay and Ming Tsai artfully construct a dish whose appearance would be enough to make my mouth water. And naturally, I&#8217;m fan of good food, everything from those perfectly cooked Five Guys burgers to the amazingly authentic food of Sichuan Gourmet.</p>
+
+<p>Only recently though, have I resolved to learn how to cook, how to <em>really</em> cook, adding it to my lifelong TODO list. Why now? I think partly it&#8217;s because during the semester I very quickly get bored of eating college food. It&#8217;s not that the food tastes bad (Yale serves great college food except for that nasty cauliflower overcooked to a paste that Berkeley sometimes makes), but that it tastes boring. After a few weeks everything tastes familiar, and not in the good homey way. It tastes familiar in the I&#8217;m-tired-of-this-same-old-shit sort of way.</p>
+
+<p>Another reason is my lifelong obsession with <a href="http://en.wikipedia.org/wiki/Szechuan_cuisine">Sichuan gourmet</a>. Sichuan is a region in China famous for it&#8217;s ridiculously spicy-hot, flavor-packed dishes. I haven&#8217;t experienced any other type of food that matches Sichuan cuisine in terms of sheer flavor and uniqueness of taste. No other food can make me down so much rice in one meal.</p>
+
+<p>Also, in the past year I&#8217;ve been going out to restaurants more often, sometimes to upscale places. I find myself having stronger, more polarized opinions about the food. Sometimes I will be so impressed with the food that I won&#8217;t be able to stop thinking about it, like having a song get stuck in your head. Sometimes I&#8217;ll be so severely disappointed with the food that I&#8217;ll publicly swear never to go to that restaurant again.</p>
+
+<p>This summer I will try my inexperienced hand at the world&#8217;s various cuisines, starting with the dishes that I love. Every so often I&#8217;ll write about my successes, my failures, and what I&#8217;ve learned about the nature of taste. I&#8217;m determined to learn all the basic cooking techniques (sauteing, baking, boiling, etc), <a href="http://www.youtube.com/watch?v=RjWkO9A-Ckk">how to wield a knife</a>, and how to use different ingredients. Hopefully I will also learn a thing or two about enjoying food that is prepared with such great care.</p>
+
+<p>Viewed in this way, the Epicurean label isn&#8217;t as paradoxical as I originally thought. Fully appreciating food for its excellence isn&#8217;t as easy or instinctive as I thought. Perhaps the Epicurean would say that thoughtfully enjoying the gastronomic goodness of food is far more in the Epicurean spirit than simply gobbling it down to satiate hunger.</p>
+
+<p>Eating can be as much an art as cooking, and cooking, I imagine, enlightens one to this art.</p>
+
+		</div>
+	<footer>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=226764337380094";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+
+		<div style="display:inline-block">
+			
+
+
+		
+
+
+
+  
+		
+			Tagged under
+		
+    <a class='category' href='/blog/categories/cooking/'>Cooking</a>
+	
+
+
+		</div>
+
+		<div style="top:5px; float:right;"class="fb-like" data-href="http://www.harveyxia.com//learning-to-cook-for-an-epicurean" data-width="500" data-layout="button_count" data-action="recommend" data-show-faces="true" data-share="true"></div>
+	
+	
+	</footer>
+	
+</article>
+<!-- END OF _includes/article.html -->
+
+	
+		
+		<!-- START OF _includes/article.html -->
+<article>
+	<header>
+		<h1><a href="/silliman-sunset">Silliman at Sunset</a></h1>
+		<time>May 04, 2013</time>
+	</header>
+		<div class="content">
+			<p><img src="/images/silliman.JPG" width="700"></p>
+
+		</div>
+	<footer>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=226764337380094";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+
+		<div style="display:inline-block">
+			
+
+
+		
+
+
+
+  
+		
+			Tagged under
+		
+    <a class='category' href='/blog/categories/photography/'>Photography</a>
+	
+
+
+		</div>
+
+		<div style="top:5px; float:right;"class="fb-like" data-href="http://www.harveyxia.com//silliman-sunset" data-width="500" data-layout="button_count" data-action="recommend" data-show-faces="true" data-share="true"></div>
+	
+	
+	</footer>
+	
+</article>
+<!-- END OF _includes/article.html -->
+
+	
+		
+		<!-- START OF _includes/article.html -->
+<article>
+	<header>
+		<h1><a href="/morality-a-necessary-component-of-rationality">Morality: A Necessary Component of Rationality</a></h1>
+		<time>May 03, 2013</time>
+	</header>
+		<div class="content">
+			<p>Why be moral? It’s a question that keeps philosophers up at night, perhaps even more so than questions about what morality demands. This question is difficult to answer because of the seemingly contradictory natures of morality and rationality. It seems fair to say that, regardless of its particular principles, a plausible moral theory must demand self-sacrifice of individuals. This is simply obvious. It also seems intuitive that the proper account of rationality is one that is based on self-interest. That is to say, the reasons that motivate us are ones that accord with our self-interest. This claim is more controversial and many philosophers argue that it is the wrong account of rationality. I hope to defend the account of rationality as founded on self-interest, and to offer the beginnings of a possible answer to the question “Why be moral?” within the framework that this account of rationality entails. To illustrate my point most effectively, I will argue the latter claim before the former.</p>
+
+<p>First, let’s just assume that our rationality is based predominantly on our self-interest. How do we reconcile morality’s demand of self-sacrifice and rationality’s demand of self-interest? One might be inclined to give the Big Stick Solution (henceforth, BSS): it is rational to be moral because the individual will be punished if he cheats the moral system. Since it is not in his self-interest to be punished, he must adhere to the moral system. This solution relies on the assumption that there exists an omniscient and omnipotent enforcer who has the power to both perfectly know and punish those who cheat the system. The legal system of a society might be such an enforcer. For instance, society punishes individuals who commit murder by taking their freedom taken away and placing them in prison. Even ignoring practical questions of the possibility of an adequate enforcement, there is a significant problem with this approach: it subordinates morality to self-interest and defines self-interest in terms of personal well-being. The solution suggests that morality should only be valued insofar as it affects our personal well-being. People shouldn’t commit murder because they will get caught and punished. This account of morality seems obviously false because morality should be valued in and of itself. In other words, morality should considered as an end, not simply as a means to promoting our well being. Given that the BSS relies on an account of morality that is so implausible, it does not give us the best answer for the question “Why be moral?”</p>
+
+<p>The BSS also employs the wrong account of human rationality for two reasons. The first reason is that it defines our self-interest negatively by claiming that humans desire not to be punished. It is insufficient to portray our rationality in terms of what we want to avoid. Of course we want to avoid physical and emotional harm, but our rationality strives for more than just ensuring our safety against what we fear. I acknowledge that nevertheless, avoiding harm is indeed a goal of rationality. But in answering the question, “Why be moral”, we must look at the complete account of rationality. Morality does not only relate to rationality through the one desire to avoid punishment. Our rationality gives us both long and short term ends that we pursue in order to better our lives. It seems better to define our rationality positively, in terms of striving to live the best life possible and fulfilling the goals that rationality determines. Thus, in discussing the relationship between morality and rationality, morality does not simply matter insofar as the failure to obey its rules might bring us harm. To give a satisfying account of why acting morally is also acting rationally, morality must be discussed as it pertains to fulfilling the goals that our rationality sets.</p>
+
+<p>As I mentioned before, the BSS makes the mistake of defining self-interest solely in terms of well-being. For the BSS theorist, what’s in our self-interest is what promotes our own well-being. Thus, the problem of treating morality merely a means arises because this view commits the BSS theorist to value morality only insofar as morality affects well-being. But self-interest is clearly not the same as well-being. An action can promote my self-interest but be harmful to my well-being. Conversely, something can promote my well-being without promoting my self-interest. For instance, I can choose to donate one of my kidneys to my brother. This would be in my self-interest because I care about my brother’s health, but it would not be promoting my well-being because I am giving away my organ. The concept of self-interest can be explained more coherently by basing it on rational desires. A rational desire is a desire that is based on the reasons available to the individual at that time. A psychopathic desire to murder people is not a rational desire. A desire to donate one’s kidney to save a family member is a rational desire. What’s in my self-interest is what fulfills my rational desires.</p>
+
+<p>If it is in one’s self-interest to act according to their rational desires, then a simpler solution to the moral question emerges. Why be moral? Because we have the rational desire to be moral, and it is in our rational self-interest to fulfill these desires. One’s first impression might be that this solution is circular: we should be moral because we should be moral. But this is misunderstanding the logic; we should be moral because we rationally want to be moral. Of course it could be objected that not everybody has the rational desire to be moral, that some people abhor morality and consciously act against its principles. Recall, however, that the BSS was inadequate because it treated morality as a means rather than an end. This was enough for us to reject the BSS because intuitively, we believe that obeying morality has intrinsic value. This very intuition shows us that most of us have the desire to be moral, regardless of what the content of the moral system are. Insofar as we have the rational desire to be moral and that to act rationally with regard to our self-interest means to act in way that promotes the realization of these rational desires, we should be moral. This solution offers a way to reconcile the seemingly contrary demands of morality and of rationality, while allowing us to preserve the self-interested account of rationality.</p>
+
+<p>What about the individual who has no desire to be moral? It seems unlikely that we can both maintain our notion of morality as having intrinsic value and find reasons that motivate him to be moral. If he does not have the desire to be moral, then acting morally for the sake of acting morally cannot be in his self-interest. For such a person, it seems that the best we can do is to revert back to the BSS, and treat morality as a means for promoting his other self-interests, most of which perhaps connect with his well-being. This way, at least we can convince him to carry out the moral actions even though he will be doing them for the wrong reasons (through purely selfish motivations).</p>
+
+<p>Now I turn to the question of our rationality. What is the correct account of human rationality? Someone might look at the simple solution I proposed and object that it is unlikely that human self-interests include the desire to promote the well-being of others. After all, the rational interests in question are self-interests, not others’¬-interests. But this is to confuse self-interest with selfishness. As I explained above, what’s in one’s self-interest does not simply consist of what promotes one’s own well-being. Similarly, what’s in one’s self-interest does not simply consist of selfish desires. It can very well be in one’s self-interest to devote the greater part of his life to raising and caring for his children, even though doing so would involve sacrificing a significant amount of his own time, energy, and money. Self-sacrifice for others can be, and often is, an essential aspect of one’s self-interest.</p>
+
+<p>Again, skeptics of this account of rationality might say, “By this account, the only thing I want is what’s in my self-interest. This is just obviously wrong.” But this is not the self-interested account of rationality that I put forth. The account I put forth claims that the only thing in one’s self-interest is what one wants. That is, what one’s self-interest consists of is necessarily and sufficiently explained by what one wants, which consist of the reasons one has to want something. This is the correct way to understand the self-interested account of rationality.</p>
+
+<p>The best objection one might raise to the arguments I’ve put forth is that, “Surely the moral desire is only one of many conflicting desires an individual possesses at any point in time. Why should he choose to follow the moral desire rather than other, perhaps more selfish, desires?” This objection would be relevant for other accounts of rationality as well. If what’s rational is determined both by selfish concerns for one’s own well-being and altruistic concerns for the well-being of others, there will be conflicting desires. Why should the individual choose to act with regard to the self-interest of others over his own? Why should the individual choose to follow his moral desire? Regardless of what theory of rationality we believe, further arguments must be made to show why it is rational that the moral desire should take precedence over other desires. This is the great difficulty of moral philosophy, to construct an argument defending this normative claim and to show the validity of its normative force.</p>
+
+<p>I did not discuss this question here, and by no means do I pretend to have fully answered the initial question, “Why be moral?” But I hope I have shown how such an answer is possible given the self-interested account of rationality, and why such an account of rationality is plausible. Unlike the Big Stick Solution, my argument does not rely on the existence of an omnipotent and omniscient enforcer. My argument relies only on the reasonable assumption that people have the desire to be moral. And from this we can see that it is rational to be moral because we have the desire to do so.</p>
+
+		</div>
+	<footer>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=226764337380094";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+
+		<div style="display:inline-block">
+			
+
+
+		
+
+
+
+  
+		
+			Tagged under
+		
+    <a class='category' href='/blog/categories/featured/'>Featured</a>, <a class='category' href='/blog/categories/philosophy/'>Philosophy</a>
+	
+
+
+		</div>
+
+		<div style="top:5px; float:right;"class="fb-like" data-href="http://www.harveyxia.com//morality-a-necessary-component-of-rationality" data-width="500" data-layout="button_count" data-action="recommend" data-show-faces="true" data-share="true"></div>
+	
+	
+	</footer>
+	
+</article>
+<!-- END OF _includes/article.html -->
+
+	
+		
+		<!-- START OF _includes/article.html -->
+<article>
+	<header>
+		<h1><a href="/the-insufficiency-of-kants-universal-law-formulation">The Insufficiency of Kant’s Universal Law Formulation</a></h1>
+		<time>April 25, 2013</time>
+	</header>
+		<div class="content">
+			<p>The Universal Law Formulation of Kant’s Categorical Imperative states, “Act only on that maxim through which you can at the same time will that it should become a universal law” (88). Regarding the nature of the ULF Kant asserts, “…there remains nothing over to which the maxim has to conform except the universality of a law as such; and it is this conformity alone that the imperative properly asserts to be necessary” (88). Here Kant makes explicit the idea his ethical system uses universability through reason as the single necessary and sufficient condition for moral evaluation. If a maxim (a general ethical principle put into first-person terms) can be rationally willed by the individual to be universalized and shared by every rational being in the world, then the maxim and its related action are morally permissible. I will argue that universability through reason alone does not provide sufficient conditions for evaluating the morality of maxims by showing how the proper application of ULF can yield two conflicting morally obligatory answers. By morally obligatory (and I will illustrate this concept in more detail below), I mean an action that must be carried out and for which it is immoral not to. If such is possible, Kant’s moral theory is shown to be inadequate because a plausible moral theory must give non-conflicting answers.</p>
+
+<p>Under Kant’s moral system, evaluating the morality of an action involves subjecting it to this test of universability, which I will call the ULF test. A maxim can fail the test in two ways: it can give rise to a contradiction in conception or a contradiction in willing. Contradiction in conception occurs when it is impossible to even conceive of a world in which the given maxim is universalized. Contradiction in willing occurs when the individual finds himself worse off in a where the given maxim is universalized, and so cannot will it to be universal. For a maxim to pass the test, it must have neither contradiction. For an action to be morally permissible, its maxim must pass the test. For an action to be morally obligatory, all the maxims permitting the failure of carrying out that action must fail the ULF test. Conversely, for an action to be morally forbidden, all the maxims permitting that action must fail.</p>
+
+<p>Consider the following scenario: a paramedic on the scene of a car accident. The car drove off a bridge and fell into a river. The driver of the car could not escape the car and drowned. Upon examining the body, the paramedic concludes that the driver did not die instantly, but drowned while struggling desperately to escape. When the driver’s wife arrives on the scene of the accident, she asks the paramedic if her husband died quickly or suffered before his death. What should the paramedic tell her?</p>
+
+<p>The ULF test can yield the answer that it is morally obligatory to tell the wife the truth. Every maxim that permits lying to the wife contradicts itself in conception because in a world where every paramedic simply told the story that is easier for the wife to bear (that the victim died painlessly), there would be no point to even asking the paramedic in the first place. In such a world, the victim’s wife would know that the paramedic always gives this answer, regardless of the truth, so they would see no point in asking. Furthermore, there seems to be a contradiction in willing for maxims which permit lying in these cases. Could the paramedic really will that all paramedics in this position lie? Then, if the paramedic were to find himself in the position of the wife, he would never know the truth about the victim’s death. Surely he cannot will that he himself might be placed in such an undesirable situation. On the other hand, maxims that permit telling the truth all pass the ULF test. There is no contradiction in conception because wives would continue to ask paramedics for the true account of how the victim died. There is no contradiction in will because if the paramedic were placed in such a situation, he would want to know that the story the paramedic tells him is in fact true. The honest paramedic would argue that it is morally obligatory to tell the truth because all maxims permitting lying in this scenario would fail because they rise to both contradictions in conception and will.</p>
+
+<p>However, the ULF test can also yield the answer that it is morally obligatory to lie to the wife. In response to the arguments above that a lie-permitting maxim would generate a contradiction in conception, the dishonest paramedic could argue that such a contradiction only arises if the paramedic’s sole duty is to tell the truth. He might argue that while telling the truth is one possible purpose, the greater purpose is to lessen the emotional trauma of the victim’s wife. If this latter purpose has been established as a premise, then there is no contradiction in conception because the paramedic would still have a purpose answering the wife, which is to reduce her emotional suffering. While the honest paramedic might rebut by pointing out that in a world where this maxim is universalized, the wife would know that the paramedic only ever gives the easier account, and so their emotional trauma would not be lessened because they would still left in uncertainty about what happened. But even so, for the wife, there still exists a 50% chance that her husband actually died painlessly according to the paramedic. If the paramedic always told the truth, then the wife either knows 100% that the husband died painfully or painlessly. By eliminating the possibility that the wife knows for certain her husband died painfully, the wife is better off emotionally. This is resting on the assumption that, for anyone in the wife’s situation, the emotional suffering that would occur from knowing the worse outcome greatly outbalances the peace of mind from knowing the better outcome. As for contradiction in willing, the dishonest paramedic agrees with the above assumption and would rather be left uncertain than chance knowing the worse outcome. Thus, the dishonest paramedic can reasonably will this maxim to be universal. More importantly, he would argue that giving the easier account is morally obligatory because all maxims permitting the paramedic to tell the truth in the case where the victim died painfully would fail the ULF test. Given that the duty of the paramedic is to reduce the emotional trauma of the already suffering wife, he must give the easier answer. A contradiction in willing arises otherwise, because the honest paramedic could not will himself to be in a situation where he is at danger for suffering the additional emotional weight of knowing the victim died painfully.</p>
+
+<p>The ULF test seems to yield two conflicting answers, that it is morally obligatory to tell the truth and that it is morally obligatory to lie and give the easier answer. Why do the two paramedics reach opposite conclusions while properly applying the ULF test?</p>
+
+<p>This problem, as I see it, arises because the ULF does not contain enough content to yield clear and non-conflicting moral answers. Because both views are supported by reason and both pass the ULF test as obligatory, universability through reason is shown to be insufficient to yield a single moral answer, and thus insufficient as the sole condition of an ethical system. There is a missing ingredient that differentiates why an individual would choose one position over the other. The issue is put into focus in examining how each side argues that the other side leads to contradictions in willing. The honest paramedic believes that no rational individual in this situation would will themselves into a position where he would be lied to, while the dishonest paramedic believes that no rational individual in this position would will themselves into a more emotionally vulnerable position. It seems that the two paramedics value different things in this situation: the honest paramedic values knowing the truth and the dishonest paramedic values peace of mind. It is the paramedics’ different values that cause them to make opposite conclusions. A plausible moral theory must include a mechanism that allows the individual to establish the relative importance of values in any given moral dilemma. As illustrated by the paramedic example, mere universability fails to do this. It seems perfectly reasonable to me that an individual can will a world where everybody in the paramedic scenario values knowing the truth, or that he wills a world where everybody values avoiding further emotional stress. Both of these values can be universalized through reason.</p>
+
+<p>The Kantian might contend reason is sufficient to determine what values are most important. He might argue that truth is obviously more valuable than emotional comfort because the successful function of rationality depends on understanding of the truth. Because rationality guides our actions and helps us make the best decisions, it is in everybody’s best interest to maximize the access they have to reality. While this argument might hold true if we are talking about the scope of one’s lifetime, it does not, I think, hold for the isolated paramedic case. If I stipulate that the wife’s knowing or not knowing the truth is inconsequential with respect to her future rational decisions, then the argument that truth is more valuable falls apart. I acknowledge that I have sketched a consequentialist argument for the value of truth and that there are other ways of arguing for truth’s value. However, I think the consequentialist argument for truth is the strongest insofar as we are discussing the application of the ULF because it is most likely to be universalized. It is harder to universalize a value based on a belief in its intrinsic importance, because other individuals might not share that belief. The Kantian might still argue that the perfect use of reason is sufficient to yield this hierarchy of values. But since I have never seen this successfully demonstrated, I remain unconvinced. It seems then, that the application of reason alone leaves room for valuing both truth and emotional comfort, but provides no way of choosing between the two. Keep in mind that one of the two values must take precedence in this case of two conflicting morally obligatory answers in which the ULF has been applied properly in both positions.</p>
+
+<p>It would be beyond the scope of this paper to introduce a plausible mechanism for deciding the relative importance of values in cases like these. I hope I have shown that Kant’s ULF, which contains universability through reason as its only condition for moral evaluation, is insufficient. In conceiving of the ULF, Kant seems to have overextended the powers of reason far beyond what is plausible for an ethical theory. Although I realize that a discussion about the nature of reason itself would require much detail than what I can offer here, I will nevertheless venture to make some remarks about reason as they relate to the shortcomings of Kant’s moral theory. Reason is most effective as an evaluative instrument given the initial premises. It cannot, however, be relied on alone to generate fundamental premises for a moral theory, let alone plausibly universal premises. Even the perfect use of reason cannot do this. Thus, individuals properly applying reason will arrive at different moral conclusions if they have different premises or moral values. The nature of reason is different than what Kant thought, and the ULF must be amended to include a way for individuals with different values to rationally evaluate the importance of their own values relative to other values in a given moral dilemma, with the goal of arriving at a definitive moral answer. Although the question remains open as to whether or not any moral system can fully achieve this goal, Kant’s ULF can without a doubt be improved in this respect.</p>
+
+<p>Works Cited</p>
+
+<p>Kant, Immanuel. Ground of the Metaphysics of Morals. Trans. H.J. Paton. New York: Harper    Perennial, 2009.</p>
+
+		</div>
+	<footer>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=226764337380094";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+
+		<div style="display:inline-block">
+			
+
+
+		
+
+
+
+  
+		
+			Tagged under
+		
+    <a class='category' href='/blog/categories/philosophy/'>Philosophy</a>
+	
+
+
+		</div>
+
+		<div style="top:5px; float:right;"class="fb-like" data-href="http://www.harveyxia.com//the-insufficiency-of-kants-universal-law-formulation" data-width="500" data-layout="button_count" data-action="recommend" data-show-faces="true" data-share="true"></div>
+	
+	
+	</footer>
+	
+</article>
+<!-- END OF _includes/article.html -->
+
+	
+	
+<!-- <div class="pagination">
+	
+		<a class="older" href="/blog/page/4/">Older</a>
+	
+	
+	<span class="total">3 of 9</span>
+	
+	
+		<a class="newer" href="/blog/page/2/">Newer</a>
+	
+</div> &#8211;>
+<!-- END OF index.html -->
+
+
+				</section>
+
+			</section>
+		
+			<footer>
+				Copyright &copy; 2015
+<a href="https://plus.google.com/110002267502068018090?rel=author">
+
+	Harvey Xia
+
+</a>
+			</footer>
+			
+		</div> <!-- // .wrap -->
+	</body>
+	<script>
+		jQuery(document).ready(function() {
+			// Make images center
+			jQuery('p:has(img)').css('text-align', 'center');
+			
+			// Add the image's title attribute as a caption
+			// jQuery('p:has(img)').append(function () {
+			// 	return '<div class="caption">' + jQuery('img', this).attr('title') + '</div>';
+			// });
+			
+			// Prettify code
+			jQuery('code').addClass('prettyprint');
+			jQuery('pre code').addClass('linenums');
+			
+			// Copy to clipboard with button
+			jQuery('pre:has(code)').prepend(function(){
+				return '<div class="clip-btn">copy to clipboard</div>';
+			});
+			jQuery('.clip-btn').zclip({
+				path:'/js/ZeroClipboard.swf',
+				copy: jQuery(this).next('code').text(),
+				afterCopy: function(){
+					jQuery(this).replaceWith('<div class="clip-btn">copied!');
+					}
+			});
+		});
+	</script>
+</html>
+<!-- END OF _layouts/default.html -->

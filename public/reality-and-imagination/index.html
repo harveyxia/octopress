@@ -1,0 +1,316 @@
+
+<!doctype html>
+<!-- START OF _layouts/default.html -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" >
+		<meta content="width=device-width,initial-scale=1" name="viewport">
+		<meta content="Thoughts of a restless mind." name="description">
+		<meta content="Harvey Xia" name="author">
+		
+		<title>Reality and Imagination &mdash; Harvey Xia</title>
+		<link href="/myfavicon.png" rel="icon">
+
+		<!-- Glisse Stylesheet -->
+		<link href="/stylesheets/glisse.css" rel="stylesheet" type="text/css">
+
+		<!-- Styles -->
+		<link href="/stylesheets/main.css" rel="stylesheet">
+		
+		<!-- Google webfonts -->
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Cousine">
+		
+		<!-- jQuery and plugins -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="/js/jquery.zclip.min.js"></script>
+
+		<!-- serial scroll -->
+		<script src="/js/jquery.scrollTo.min.js"></script>
+		<script src="/js/jquery.serialScroll.min.js"></script>
+		
+		<!-- Syntax highlighter -->
+		<link href="/stylesheets/prettify-hemisu.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="/js/prettify.js"></script>
+		
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-25655664-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+
+		<script src="/js/footnote.js" type="text/javascript"></script>
+
+		<!-- SNOWSTORM-->
+		<script src="/js/snowstorm-min.js"> </script>
+
+		<!-- snowstorm options -->
+		<script type="text/javascript">
+		snowStorm.autoStart = false;
+		snowStorm.snowColor = '#78B0F6';   // blue-ish snow!?
+		snowStorm.flakesMaxActive = 96;    // show more snow on screen at once
+		snowStorm.useTwinkleEffect = true; // let the snow flicker in and out of view
+		snowStorm.vMaxX = 5;
+		snowStorm.vMaxY = 3;
+		snowStorm.toggleSnow();
+		</script>
+
+		<!-- PHOTOS TAG / FANCY BOX PLUGIN -->
+
+		<script type="text/javascript">
+		    jQuery.noConflict(); // ender.js conflicts with jQuery
+		</script>
+		 
+		<!-- Load FancyBox -->
+		<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" />
+		<script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+		 
+		      <!-- Fix FancyBox style for OctoPress -->
+      <style type="text/css">
+      .fancybox-wrap { position: fixed !important; }
+      .fancybox-opened {
+        -webkit-border-radius: 4px !important;
+        -moz-border-radius: 4px !important;
+        border-radius: 4px !important;
+      }
+      .fancybox-close, .fancybox-prev span, .fancybox-next span {
+        background-color: transparent !important;
+        border: 0 !important;
+      }
+      </style>
+
+		 
+		<!-- Custom Scripts -->
+		<script language="Javascript" type="text/javascript">
+		    // ender.js gobbles jQuery's ready event: Use ender.js $ instead
+		    jQuery(document).ready(function() {
+		        jQuery(".fancybox").fancybox();
+		    });
+		</script>
+
+		<!--<link href="http://feeds.feedburner.com/turkeltaub" rel="alternate" title="Harvey Xia" type="application/rss+xml" />-->
+
+		<script type="text/javascript">	
+		// Easing equation, borrowed from jQuery easing plugin
+		// http://gsgd.co.uk/sandbox/jquery/easing/
+		jQuery.easing.easeOutQuart = function (x, t, b, c, d) {
+			return -c * ((t=t/d-1)*t*t*t - 1) + b;
+		};
+		
+		jQuery(function( $ ){
+			/**
+			 * Most jQuery.serialScroll's settings, actually belong to jQuery.ScrollTo, check it's demo for an example of each option.
+			 * @see http://flesler.demos.com/jquery/scrollTo/
+			 * You can use EVERY single setting of jQuery.ScrollTo, in the settings hash you send to jQuery.serialScroll.
+			 */
+			
+			/**
+			 * The plugin binds 6 events to the container to allow external manipulation.
+			 * prev, next, goto, start, stop and notify
+			 * You use them like this: $(your_container).trigger('next'), $(your_container).trigger('goto', [5]) (0-based index).
+			 * If for some odd reason, the element already has any of these events bound, trigger it with the namespace.
+			 */		
+			
+			/**
+			 * IMPORTANT: this call to the plugin specifies ALL the settings (plus some of jQuery.ScrollTo)
+			 * This is done so you can see them. You DON'T need to specify the commented ones.
+			 * A 'target' is specified, that means that #screen is the context for target, prev, next and navigation.
+			 */
+			$('.wrap').serialScroll({
+				target:'.outer-scroll',
+				items:'article', // Selector to the items ( relative to the matched elements, '#sections' in this case )
+				prev:'a.prev',// Selector to the 'prev' button (absolute!, meaning it's relative to the document)
+				next:'a.next',// Selector to the 'next' button (absolute too)
+				axis:'xy',// The default is 'y' scroll on both ways
+				navigation:'#navigation li a',
+				duration:700,// Length of the animation (if you scroll 2 axes and use queue, then each axis take half this time)
+				force:true, // Force a scroll to the element specified by 'start' (some browsers don't reset on refreshes)
+				
+				//queue:false,// We scroll on both axes, scroll both at the same time.
+				//event:'click',// On which event to react (click is the default, you probably won't need to specify it)
+				//stop:false,// Each click will stop any previous animations of the target. (false by default)
+				//lock:true, // Ignore events if already animating (true by default)		
+				//start: 0, // On which element (index) to begin ( 0 is the default, redundant in this case )		
+				//cycle:true,// Cycle endlessly ( constant velocity, true is the default )
+				//step:1, // How many items to scroll each time ( 1 is the default, no need to specify )
+				//jump:false, // If true, items become clickable (or w/e 'event' is, and when activated, the pane scrolls to them)
+				//lazy:false,// (default) if true, the plugin looks for the items on each event(allows AJAX or JS content, or reordering)
+				//interval:1000, // It's the number of milliseconds to automatically go to the next
+				//constant:true, // constant speed
+				
+				onBefore:function( e, elem, $pane, $items, pos ){
+					/**
+					 * 'this' is the triggered element 
+					 * e is the event object
+					 * elem is the element we'll be scrolling to
+					 * $pane is the element being scrolled
+					 * $items is the items collection at this moment
+					 * pos is the position of elem in the collection
+					 * if it returns false, the event will be ignored
+					 */
+					 //those arguments with a $ are jqueryfied, elem isn't.
+					e.preventDefault();
+					if( this.blur )
+						this.blur();
+					$pane.height( elem.clientHeight )
+				},
+				onAfter:function( elem ){
+					//'this' is the element being scrolled ($pane) not jqueryfied
+				}
+			});
+		});
+	</script>
+			
+		
+	</head>
+	<body onload="prettyPrint()">
+	
+		<div class="wrap">
+	
+			<header>
+				<div class="title"><a class="blogtitle" style="color:#333;" href="/">Harvey Xia</a></div>
+				
+				<div class="navi">
+					<ul>
+						<li><a href="/">Blog</a></li>
+						<li><a href="/travel">Travel</a></li>
+						<li><a href="/photography">Photography</a></li>
+						<li><a href="/blog/archives">Archives</a></li>
+						<li><a href="/about">About</a></li>
+					</ul>
+				</div> <!-- // .navi -->
+
+				
+			</header>
+			<section class="outer-scroll">
+				<section class="inner-scroll">
+		
+				<!-- START OF _layouts/post.html -->
+
+    <!-- START OF _includes/article.html -->
+<article>
+	<header>
+		<h1><a href="/reality-and-imagination">Reality and Imagination</a></h1>
+		<time>July 07, 2011</time>
+	</header>
+		<div class="content">
+			<h1></h1>
+
+<p>The question of reality is a popular one. From the ancient Greek philosophers to modern films (<a href="http://en.wikipedia.org/wiki/The_Matrix">The Matrix</a>, <a href="http://en.wikipedia.org/wiki/Inception">Inception</a>, <a href="http://en.wikipedia.org/wiki/Shutter_Island_(film)">Shutter Island</a>), the task of defining reality manifests itself in a variety of ways. Even before we can ask, “What is reality,” we must interrogate our ability to even answer such a question.</p>
+
+<p>Humans’ connection to the physical world relies on our sense of taste, touch, sight, hearing, and smell. However, we do not experience the physical universe in a direct way, there exists a middle man: our brain. Collectively, our sense organs are referred to as the <a href="http://en.wikipedia.org/wiki/Peripheral_nervous_system">PNS</a>, and gathered information is received and processed by our <a href="http://en.wikipedia.org/wiki/Central_nervous_system">CNS</a>. Therefore, everything we experience on a daily basis, every physical sensation, are merely our brain’s interpretation of the real world. You are not seeing text on a computer screen right now, you are seeing the brain-processed product of whatever this is. So logically, I think it’s safe to say that the human perception of reality is heavily, if not completely, mediated by our nervous systems.</p>
+
+<p>But then how can we trust our perception of reality? How can we rely on this to be the true, objective reality when we perceive it through our subjective brains? I’m sure you’ve encountered the <a href="http://en.wikipedia.org/wiki/List_of_unsolved_problems_in_philosophy#Qualia">perception-of-color dilemma</a> as an example. True, there does exist a relativity between objects that remains universal. But this relativity itself may differ the same way that math fractions can be proportioned in different magnitudes.</p>
+
+<p>But honestly, the above issues are too dialectic and pointless for my taste. Instead, I take the idea of a subjectively defined reality, and apply it to our perception of the metaphysical, meaning our ideas, emotions, and attitudes towards different situations of life. In <em><a href="http://en.wikipedia.org/wiki/An_Enquiry_Concerning_Human_Understanding">An Enquiry Concerning Human Understanding</a></em> David Hume writes:</p>
+
+<blockquote><p>Nothing is more free than the imagination of man; and though it cannot exceed that original stock of ideas furnished by the internal and external senses, it has unlimited power of mixing, compounding, separating, and dividing these ideas, in all the varieties of fiction and vision.</p></blockquote>
+
+<p>Imagination is what allows us to connect the dots any which way we like. Our minds endow us with the incredible power to dream, envision, and create things without the restriction of the laws of physics (or any laws for that matter). But not only that, if reality is truly a fluid, subjective thing, then our imaginations function as the bridge between ourselves and the outside world. Our imagination takes our sense perceptions and molds them into something that we can relate to on the deepest, most instinctive level. Like a translator, we rely on it to understand the universe.</p>
+
+<p><img src="http://www.google.com/url?source=imgres&amp;ct=img&amp;q=http://www.neptune3d.net/images/treehill.jpg&amp;sa=X&amp;ei=lFUWTrWbG8LZgAfekN33Dw&amp;ved=0CAQQ8wc4Hg&amp;usg=AFQjCNFMBnhLAPrwaXLnh26cxo6vrC2H_g" alt="" /></p>
+
+<p>It’s a sad notion that imaginative potential tends to fade as we age. As we travel along the conveyor belt in the educational factory, creativity and artistry more often than not get replaced by mechanical facts and skills. I know this is quite an arrogant statement to make, especially for a kid who’s only a rising high school senior. But I’m simply voicing what my human instinct tells me. Don’t take my word for it, take it from Ken Robinson and his compelling TED speech.</p>
+
+<p>[ted id=66]</p>
+
+<p>I constantly remind myself that for pragmatism’s sake, I must endure. But I fear that in the not too distant future, my imagination may disappear completely, relegating me to a life of monotony, working at a corporate job dressed in a cookie-cutter suit. The film <a href="http://en.wikipedia.org/wiki/Revolutionary_Road_(film)">Revolutionary Road</a> explores this danger in a moving way. Pragmatically speaking, imagination or “the vision” as Apple likes to call it, would catalyze American industrial and scientific innovation, which would do wonders for the job market and economy. Metaphysically speaking, an active imagination would help us discover meaning. The world around us can suddenly become more lively, as if the black and white coloring book had been completed. Experiences become richer and more fulfilling. Perhaps it’s not too far-fetched to believe that dreams can be actualized. If everyone did so, consider how much more exciting the world would be. Colors never before seen, sounds never before heard, ideas never before thought. And suddenly, on one fine morning, monotony becomes only a word, a remnant of bleaker times.</p>
+
+<p><img src="http://www.google.com/url?source=imgres&amp;ct=img&amp;q=http://4.bp.blogspot.com/-14x67Be9e6E/TZnXqQdgcNI/AAAAAAAAAH8/EwIdAlylWFI/s1600/imagination2.jpg&amp;sa=X&amp;ei=rFQWTpLSMo7QgAeclMn3Dw&amp;ved=0CAQQ8wc&amp;usg=AFQjCNET0RviR5Dmg5j0bRP9SMWWul9_Ww" alt="" /></p>
+
+<p>Perhaps that’s why older kids and adults alike look upon young children with fascination. They remind us of the days when our imagination danced rampant in a reality of pure possibility. In an instant, we could transport ourselves to the age of the dinosaurs. In another, we were superheroes saving the world. Such power of mind we once possessed. Such humanity.</p>
+
+		</div>
+	<footer>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=226764337380094";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+
+		<div style="display:inline-block">
+			
+
+
+		
+
+
+
+  
+		
+			Tagged under
+		
+    <a class='category' href='/blog/categories/philosophy/'>Philosophy</a>
+	
+
+
+		</div>
+
+		<div style="top:5px; float:right;"class="fb-like" data-href="http://www.harveyxia.com//reality-and-imagination" data-width="500" data-layout="button_count" data-action="recommend" data-show-faces="true" data-share="true"></div>
+	
+	
+	</footer>
+	
+</article>
+<!-- END OF _includes/article.html -->
+
+
+<!-- END OF _/layouts/post.html -->
+
+
+				</section>
+
+			</section>
+		
+			<footer>
+				Copyright &copy; 2015
+<a href="https://plus.google.com/110002267502068018090?rel=author">
+
+	Harvey Xia
+
+</a>
+			</footer>
+			
+		</div> <!-- // .wrap -->
+	</body>
+	<script>
+		jQuery(document).ready(function() {
+			// Make images center
+			jQuery('p:has(img)').css('text-align', 'center');
+			
+			// Add the image's title attribute as a caption
+			// jQuery('p:has(img)').append(function () {
+			// 	return '<div class="caption">' + jQuery('img', this).attr('title') + '</div>';
+			// });
+			
+			// Prettify code
+			jQuery('code').addClass('prettyprint');
+			jQuery('pre code').addClass('linenums');
+			
+			// Copy to clipboard with button
+			jQuery('pre:has(code)').prepend(function(){
+				return '<div class="clip-btn">copy to clipboard</div>';
+			});
+			jQuery('.clip-btn').zclip({
+				path:'/js/ZeroClipboard.swf',
+				copy: jQuery(this).next('code').text(),
+				afterCopy: function(){
+					jQuery(this).replaceWith('<div class="clip-btn">copied!');
+					}
+			});
+		});
+	</script>
+</html>
+<!-- END OF _layouts/default.html -->

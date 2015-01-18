@@ -1,0 +1,420 @@
+
+<!doctype html>
+<!-- START OF _layouts/default.html -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" >
+		<meta content="width=device-width,initial-scale=1" name="viewport">
+		<meta content="Thoughts of a restless mind." name="description">
+		<meta content="Harvey Xia" name="author">
+		
+		<title>Harvey Xia</title>
+		<link href="/myfavicon.png" rel="icon">
+
+		<!-- Glisse Stylesheet -->
+		<link href="/stylesheets/glisse.css" rel="stylesheet" type="text/css">
+
+		<!-- Styles -->
+		<link href="/stylesheets/main.css" rel="stylesheet">
+		
+		<!-- Google webfonts -->
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Cousine">
+		
+		<!-- jQuery and plugins -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="/js/jquery.zclip.min.js"></script>
+
+		<!-- serial scroll -->
+		<script src="/js/jquery.scrollTo.min.js"></script>
+		<script src="/js/jquery.serialScroll.min.js"></script>
+		
+		<!-- Syntax highlighter -->
+		<link href="/stylesheets/prettify-hemisu.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="/js/prettify.js"></script>
+		
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-25655664-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+
+		<script src="/js/footnote.js" type="text/javascript"></script>
+
+		<!-- SNOWSTORM-->
+		<script src="/js/snowstorm-min.js"> </script>
+
+		<!-- snowstorm options -->
+		<script type="text/javascript">
+		snowStorm.autoStart = false;
+		snowStorm.snowColor = '#78B0F6';   // blue-ish snow!?
+		snowStorm.flakesMaxActive = 96;    // show more snow on screen at once
+		snowStorm.useTwinkleEffect = true; // let the snow flicker in and out of view
+		snowStorm.vMaxX = 5;
+		snowStorm.vMaxY = 3;
+		snowStorm.toggleSnow();
+		</script>
+
+		<!-- PHOTOS TAG / FANCY BOX PLUGIN -->
+
+		<script type="text/javascript">
+		    jQuery.noConflict(); // ender.js conflicts with jQuery
+		</script>
+		 
+		<!-- Load FancyBox -->
+		<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" />
+		<script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+		 
+		      <!-- Fix FancyBox style for OctoPress -->
+      <style type="text/css">
+      .fancybox-wrap { position: fixed !important; }
+      .fancybox-opened {
+        -webkit-border-radius: 4px !important;
+        -moz-border-radius: 4px !important;
+        border-radius: 4px !important;
+      }
+      .fancybox-close, .fancybox-prev span, .fancybox-next span {
+        background-color: transparent !important;
+        border: 0 !important;
+      }
+      </style>
+
+		 
+		<!-- Custom Scripts -->
+		<script language="Javascript" type="text/javascript">
+		    // ender.js gobbles jQuery's ready event: Use ender.js $ instead
+		    jQuery(document).ready(function() {
+		        jQuery(".fancybox").fancybox();
+		    });
+		</script>
+
+		<!--<link href="http://feeds.feedburner.com/turkeltaub" rel="alternate" title="Harvey Xia" type="application/rss+xml" />-->
+
+		<script type="text/javascript">	
+		// Easing equation, borrowed from jQuery easing plugin
+		// http://gsgd.co.uk/sandbox/jquery/easing/
+		jQuery.easing.easeOutQuart = function (x, t, b, c, d) {
+			return -c * ((t=t/d-1)*t*t*t - 1) + b;
+		};
+		
+		jQuery(function( $ ){
+			/**
+			 * Most jQuery.serialScroll's settings, actually belong to jQuery.ScrollTo, check it's demo for an example of each option.
+			 * @see http://flesler.demos.com/jquery/scrollTo/
+			 * You can use EVERY single setting of jQuery.ScrollTo, in the settings hash you send to jQuery.serialScroll.
+			 */
+			
+			/**
+			 * The plugin binds 6 events to the container to allow external manipulation.
+			 * prev, next, goto, start, stop and notify
+			 * You use them like this: $(your_container).trigger('next'), $(your_container).trigger('goto', [5]) (0-based index).
+			 * If for some odd reason, the element already has any of these events bound, trigger it with the namespace.
+			 */		
+			
+			/**
+			 * IMPORTANT: this call to the plugin specifies ALL the settings (plus some of jQuery.ScrollTo)
+			 * This is done so you can see them. You DON'T need to specify the commented ones.
+			 * A 'target' is specified, that means that #screen is the context for target, prev, next and navigation.
+			 */
+			$('.wrap').serialScroll({
+				target:'.outer-scroll',
+				items:'article', // Selector to the items ( relative to the matched elements, '#sections' in this case )
+				prev:'a.prev',// Selector to the 'prev' button (absolute!, meaning it's relative to the document)
+				next:'a.next',// Selector to the 'next' button (absolute too)
+				axis:'xy',// The default is 'y' scroll on both ways
+				navigation:'#navigation li a',
+				duration:700,// Length of the animation (if you scroll 2 axes and use queue, then each axis take half this time)
+				force:true, // Force a scroll to the element specified by 'start' (some browsers don't reset on refreshes)
+				
+				//queue:false,// We scroll on both axes, scroll both at the same time.
+				//event:'click',// On which event to react (click is the default, you probably won't need to specify it)
+				//stop:false,// Each click will stop any previous animations of the target. (false by default)
+				//lock:true, // Ignore events if already animating (true by default)		
+				//start: 0, // On which element (index) to begin ( 0 is the default, redundant in this case )		
+				//cycle:true,// Cycle endlessly ( constant velocity, true is the default )
+				//step:1, // How many items to scroll each time ( 1 is the default, no need to specify )
+				//jump:false, // If true, items become clickable (or w/e 'event' is, and when activated, the pane scrolls to them)
+				//lazy:false,// (default) if true, the plugin looks for the items on each event(allows AJAX or JS content, or reordering)
+				//interval:1000, // It's the number of milliseconds to automatically go to the next
+				//constant:true, // constant speed
+				
+				onBefore:function( e, elem, $pane, $items, pos ){
+					/**
+					 * 'this' is the triggered element 
+					 * e is the event object
+					 * elem is the element we'll be scrolling to
+					 * $pane is the element being scrolled
+					 * $items is the items collection at this moment
+					 * pos is the position of elem in the collection
+					 * if it returns false, the event will be ignored
+					 */
+					 //those arguments with a $ are jqueryfied, elem isn't.
+					e.preventDefault();
+					if( this.blur )
+						this.blur();
+					$pane.height( elem.clientHeight )
+				},
+				onAfter:function( elem ){
+					//'this' is the element being scrolled ($pane) not jqueryfied
+				}
+			});
+		});
+	</script>
+			
+		
+	</head>
+	<body onload="prettyPrint()">
+	
+		<div class="wrap">
+	
+			<header>
+				<div class="title"><a class="blogtitle" style="color:#333;" href="/">Harvey Xia</a></div>
+				
+				<div class="navi">
+					<ul>
+						<li><a href="/">Blog</a></li>
+						<li><a href="/travel">Travel</a></li>
+						<li><a href="/photography">Photography</a></li>
+						<li><a href="/blog/archives">Archives</a></li>
+						<li><a href="/about">About</a></li>
+					</ul>
+				</div> <!-- // .navi -->
+
+				
+			</header>
+			<section class="outer-scroll">
+				<section class="inner-scroll">
+		
+				
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type='text/javascript' src='https://raw.github.com/swiftype/swiftype-search-jquery/master/jquery.ba-hashchange.min.js'></script>
+<script type="text/javascript" src="https://raw.github.com/swiftype/swiftype-search-jquery/master/jquery.swiftype.search.js"></script>
+<article style="border-left: 10px solid #C0143C; padding: 3em 50px">
+<nav id="service_hook">
+    <a href="?">Service Name</a>
+</nav>
+<ul id="magic_bar" style="display: none;">
+    <li class="triangle">&nbsp;</li>
+    <li class="signup"><a class="signup" href="/search/">Search</a>
+    <div>
+        <form> <input type="text" id="st-search-input" value="search" class="st-search-input" /> </form>
+    </div>
+    </li>
+        <div id="st-results-container"></div>
+    <li class="signup"><a class="signup" href="https://github.com/HackerLabs/hackerlabs.github.com">Fork on GitHub</a></li>
+    <li class="signup"><a class="signup" href="/about/">About Hacker Labs</a></li>
+</ul>
+
+</article>
+
+<script type="text/javascript">
+var a;
+jQuery("#service_hook").mouseenter(function(){clearTimeout(a),jQuery("#st-search-input").val("search"),jQuery("#magic_bar").show()}).mouseleave(function(){a=setTimeout("jQuery('#magic_bar').hide();",300)});
+jQuery("#magic_bar").mouseenter(function(){clearTimeout(a),jQuery("#magic_bar").show()}).mouseleave(function(){a=setTimeout("jQuery('#magic_bar').hide();",300)});
+var customRenderFunction = function (document_type, item) {
+  //alert(document_type);
+  //alert(item.toSource());
+  return '<div class="st-result"><h3 class="title"><a href="' + item['url'] + '" class="st-search-result-link">' + item['title'] + '</a></h3><p>' + item['highlight'].body + '</p><a href="' + item['url'] + '">' + item['url'] + '</a></div>';
+};
+
+jQuery('#st-search-input').swiftypeSearch({
+  renderFunction: customRenderFunction,
+  fetchFields: {'posts' : ['title','link','body', 'published_on']},
+  resultContainingElement: '#st-results-container',
+  engineKey: 'yp4imGCcpVF6mqypDhYH',
+});
+</script>
+
+
+<article style="border-left: 10px solid #C0143C; padding: 3em 50px">
+<h2> Welcome to Harvey Xia.  </h2>
+<p>Thoughts of a restless mind.<p>
+
+<a class="continue" href="/about/">More →</a>
+</article>
+
+<article id="post-0" style="padding: 0px 50px">
+<h2>BLOG POSTS</h2>
+</article>
+
+<frontpage-list id="post-0" style="padding: 0px 50px">
+<ul class="frontpage-blog-list">
+    
+    <a href="/the-flood-channels" rel="post" title="The Flood Channels" class="frontpage-blog-link" ><li class="Default-category  Daily Themes-category  Travel-category "><span class="frontpage-date">02/May/2014</span>The Flood Channels</li> </a>
+    
+    <a href="/an-aging-memory" rel="post" title="An Aging Memory" class="frontpage-blog-link" ><li class="Default-category  Daily Themes-category  Essays-category "><span class="frontpage-date">25/Mar/2014</span>An Aging Memory</li> </a>
+    
+    <a href="/on-journaling-and-recordkeeping" rel="post" title="On Journaling and Recordkeeping" class="frontpage-blog-link" ><li class="Default-category  Essays-category "><span class="frontpage-date">24/Mar/2014</span>On Journaling and Recordkeeping</li> </a>
+    
+    <a href="/the-flood-channels" rel="post" title="The Flood Channels" class="frontpage-blog-link" ><li class="Default-category  Travel-category "><span class="frontpage-date">23/Mar/2014</span>The Flood Channels</li> </a>
+    
+    <a href="/the-meadows" rel="post" title="The Meadows" class="frontpage-blog-link" ><li class="Default-category  Travel-category "><span class="frontpage-date">22/Mar/2014</span>The Meadows</li> </a>
+    
+    <a href="/faces-of-zion" rel="post" title="Faces of Zion" class="frontpage-blog-link" ><li class="Default-category  Travel-category "><span class="frontpage-date">20/Mar/2014</span>Faces of Zion</li> </a>
+    
+    <a href="/through-the-desert" rel="post" title="Through the Desert" class="frontpage-blog-link" ><li class="Default-category  Travel-category "><span class="frontpage-date">15/Mar/2014</span>Through the Desert</li> </a>
+    
+    <a href="/hack-your-workflow" rel="post" title="Hack Your Workflow" class="frontpage-blog-link" ><li class="Default-category  Coding-category "><span class="frontpage-date">07/Feb/2014</span>Hack Your Workflow</li> </a>
+    
+    <a href="/the-distractions-of-college" rel="post" title="The Distractions of College" class="frontpage-blog-link" ><li class="Default-category  Essays-category "><span class="frontpage-date">26/Nov/2013</span>The Distractions of College</li> </a>
+    
+    <a href="/my-visit-to-new-york" rel="post" title="My Visit to New York" class="frontpage-blog-link" ><li class="Default-category  Travel-category "><span class="frontpage-date">01/Sep/2013</span>My Visit to New York</li> </a>
+    
+    <a href="/not-so-instant-ramen" rel="post" title="Not-so-instant ramen" class="frontpage-blog-link" ><li class="Default-category  Cooking-category "><span class="frontpage-date">15/Jul/2013</span>Not-so-instant ramen</li> </a>
+    
+    <a href="/learning-to-cook-for-an-epicurean" rel="post" title="Learning to cook for an epicurean" class="frontpage-blog-link" ><li class="Default-category  Cooking-category "><span class="frontpage-date">01/Jul/2013</span>Learning to cook for an epicurean</li> </a>
+    
+    <a href="/silliman-sunset" rel="post" title="Silliman at Sunset" class="frontpage-blog-link" ><li class="Default-category  Photography-category "><span class="frontpage-date">04/May/2013</span>Silliman at Sunset</li> </a>
+    
+    <a href="/morality-a-necessary-component-of-rationality" rel="post" title="Morality: A Necessary Component of Rationality" class="frontpage-blog-link" ><li class="Default-category  Featured-category  Philosophy-category "><span class="frontpage-date">03/May/2013</span>Morality: A Necessary Component of Rationality</li> </a>
+    
+    <a href="/the-insufficiency-of-kants-universal-law-formulation" rel="post" title="The Insufficiency of Kant’s Universal Law Formulation" class="frontpage-blog-link" ><li class="Default-category  Philosophy-category "><span class="frontpage-date">25/Apr/2013</span>The Insufficiency of Kant’s Universal Law Formulation</li> </a>
+    
+    <a href="/assertions-updating-the-context-set" rel="post" title="Assertions: Updating the Context Set" class="frontpage-blog-link" ><li class="Default-category  Philosophy-category "><span class="frontpage-date">24/Apr/2013</span>Assertions: Updating the Context Set</li> </a>
+    
+    <a href="/octopress-and-the-hacker-aesthetic" rel="post" title="Octopress and the Hacker Aesthetic" class="frontpage-blog-link" ><li class="Default-category  Blog-category "><span class="frontpage-date">23/Apr/2013</span>Octopress and the Hacker Aesthetic</li> </a>
+    
+    <a href="/mental-state-theory-an-inadequate-picture-of-happiness" rel="post" title="Mental State Theory: An Inadequate Picture of Happiness" class="frontpage-blog-link" ><li class="Default-category  Philosophy-category "><span class="frontpage-date">17/Apr/2013</span>Mental State Theory: An Inadequate Picture of Happiness</li> </a>
+    
+    <a href="/brad-mehldaus-my-favorite-things" rel="post" title="Brad Mehldau&#8217;s &#8220;My Favorite Things&#8221;" class="frontpage-blog-link" ><li class="Default-category  Listening-category "><span class="frontpage-date">06/Feb/2013</span>Brad Mehldau&#8217;s &#8220;My Favorite Things&#8221;</li> </a>
+    
+    <a href="/music-as-sound-sound-as-music" rel="post" title="Music as Sound, Sound as Music" class="frontpage-blog-link" ><li class="Default-category  Essays-category  Featured-category  Listening-category "><span class="frontpage-date">19/Dec/2012</span>Music as Sound, Sound as Music</li> </a>
+    
+    <a href="/how-to-look-at-snow" rel="post" title="How to Look at Snow" class="frontpage-blog-link" ><li class="Default-category  Essays-category  Featured-category "><span class="frontpage-date">10/Dec/2012</span>How to Look at Snow</li> </a>
+    
+    <a href="/asking-the-difficult-question" rel="post" title="Asking the Difficult Question" class="frontpage-blog-link" ><li class="Default-category  Essays-category "><span class="frontpage-date">09/Dec/2012</span>Asking the Difficult Question</li> </a>
+    
+    <a href="/the-little-things" rel="post" title="The Little Things" class="frontpage-blog-link" ><li class="Default-category  Essays-category  Featured-category "><span class="frontpage-date">30/Nov/2012</span>The Little Things</li> </a>
+    
+    <a href="/search-for-peace-mccoy-tyner" rel="post" title="Search For Peace – Mccoy Tyner" class="frontpage-blog-link" ><li class="Default-category  Listening-category "><span class="frontpage-date">13/Nov/2012</span>Search For Peace – Mccoy Tyner</li> </a>
+    
+    <a href="/without-words" rel="post" title="Without Words" class="frontpage-blog-link" ><li class="Default-category  Essays-category "><span class="frontpage-date">04/Oct/2012</span>Without Words</li> </a>
+    
+    <a href="/the-woods-and-i-and-her" rel="post" title="The Woods and I, and Her" class="frontpage-blog-link" ><li class="Default-category  Essays-category  Featured-category "><span class="frontpage-date">28/Sep/2012</span>The Woods and I, and Her</li> </a>
+    
+    <a href="/concerning-mcculloughs-speech" rel="post" title="Concerning McCullough&#8217;s Speech" class="frontpage-blog-link" ><li class="Default-category  Essays-category "><span class="frontpage-date">09/Jun/2012</span>Concerning McCullough&#8217;s Speech</li> </a>
+    
+    <a href="/mr-mcculloughs-2012-commencement-speech" rel="post" title="Mr. McCullough&#8217;s 2012 Commencement Speech" class="frontpage-blog-link" ><li class="Default-category  Essays-category "><span class="frontpage-date">07/Jun/2012</span>Mr. McCullough&#8217;s 2012 Commencement Speech</li> </a>
+    
+    <a href="/reflections-on-metaphilosophy-the-role-of-philosophy-in-my-life" rel="post" title="Reflections on Metaphilosophy: The Role of Philosophy in My Life" class="frontpage-blog-link" ><li class="Default-category  Essays-category  Philosophy-category "><span class="frontpage-date">10/May/2012</span>Reflections on Metaphilosophy: The Role of Philosophy in My Life</li> </a>
+    
+    <a href="/a-moment-of-color" rel="post" title="A Moment of Color" class="frontpage-blog-link" ><li class="Default-category  Poetry-category "><span class="frontpage-date">27/Jan/2012</span>A Moment of Color</li> </a>
+    
+    <a href="/ruminations-on-a-sunday-morning" rel="post" title="Ruminations on a Sunday Morning" class="frontpage-blog-link" ><li class="Default-category  Poetry-category "><span class="frontpage-date">24/Jan/2012</span>Ruminations on a Sunday Morning</li> </a>
+    
+    <a href="/frank-ohara" rel="post" title="Frank O&#8217;Hara" class="frontpage-blog-link" ><li class="Default-category  Essays-category  Poetry-category "><span class="frontpage-date">22/Jan/2012</span>Frank O&#8217;Hara</li> </a>
+    
+    <a href="/response-to-hume%25e2%2580%2599s-argument-against-the-existence-of-god" rel="post" title="Response to Hume’s Argument Against the Existence of God" class="frontpage-blog-link" ><li class="Default-category  Philosophy-category "><span class="frontpage-date">05/Jan/2012</span>Response to Hume’s Argument Against the Existence of God</li> </a>
+    
+    <a href="/reflections-on-the-nature-and-importance-of-reality" rel="post" title="Reflections on the Nature and Importance of Reality" class="frontpage-blog-link" ><li class="Default-category  Philosophy-category "><span class="frontpage-date">05/Oct/2011</span>Reflections on the Nature and Importance of Reality</li> </a>
+    
+    <a href="/response-to-carl-jungs-concept-of-the-collective-unconscious" rel="post" title="Response to Carl Jung&#8217;s Concept of the Collective Unconscious" class="frontpage-blog-link" ><li class="Default-category  Philosophy-category "><span class="frontpage-date">10/Sep/2011</span>Response to Carl Jung&#8217;s Concept of the Collective Unconscious</li> </a>
+    
+    <a href="/on-the-nature-of-selfishness" rel="post" title="On the Nature of Selfishness" class="frontpage-blog-link" ><li class="Default-category  Philosophy-category "><span class="frontpage-date">01/Sep/2011</span>On the Nature of Selfishness</li> </a>
+    
+    <a href="/singularity-longevity-and-spirituality" rel="post" title="The Singularity" class="frontpage-blog-link" ><li class="Default-category  Philosophy-category "><span class="frontpage-date">23/Jul/2011</span>The Singularity</li> </a>
+    
+    <a href="/an-aristocratic-qualm-concerning-aristocracy" rel="post" title="An Aristocratic Qualm Concerning Aristocracy" class="frontpage-blog-link" ><li class="Default-category  Philosophy-category "><span class="frontpage-date">10/Jul/2011</span>An Aristocratic Qualm Concerning Aristocracy</li> </a>
+    
+    <a href="/reality-and-imagination" rel="post" title="Reality and Imagination" class="frontpage-blog-link" ><li class="Default-category  Philosophy-category "><span class="frontpage-date">07/Jul/2011</span>Reality and Imagination</li> </a>
+    
+    <a href="/blue-pill-theory" rel="post" title="Blue Pill Theory" class="frontpage-blog-link" ><li class="Default-category  Philosophy-category "><span class="frontpage-date">26/Jun/2011</span>Blue Pill Theory</li> </a>
+    
+    <a href="/transliminism-part-ii" rel="post" title="Transliminism Part II" class="frontpage-blog-link" ><li class="Default-category  Philosophy-category "><span class="frontpage-date">25/Jun/2011</span>Transliminism Part II</li> </a>
+    
+    <a href="/transliminism" rel="post" title="Transliminism Part I" class="frontpage-blog-link" ><li class="Default-category  Philosophy-category "><span class="frontpage-date">24/Jun/2011</span>Transliminism Part I</li> </a>
+    
+    <a href="/my-fundamental-dilemma-physical-vs-metaphysical" rel="post" title="My Fundamental Dilemma: Physical vs. Metaphysical" class="frontpage-blog-link" ><li class="Default-category  Philosophy-category "><span class="frontpage-date">23/Jun/2011</span>My Fundamental Dilemma: Physical vs. Metaphysical</li> </a>
+    
+</ul>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</frontpage-list><!-- #post-0 -->
+
+
+
+
+
+				</section>
+
+			</section>
+		
+			<footer>
+				Copyright &copy; 2015
+<a href="https://plus.google.com/110002267502068018090?rel=author">
+
+	Harvey Xia
+
+</a>
+			</footer>
+			
+		</div> <!-- // .wrap -->
+	</body>
+	<script>
+		jQuery(document).ready(function() {
+			// Make images center
+			jQuery('p:has(img)').css('text-align', 'center');
+			
+			// Add the image's title attribute as a caption
+			// jQuery('p:has(img)').append(function () {
+			// 	return '<div class="caption">' + jQuery('img', this).attr('title') + '</div>';
+			// });
+			
+			// Prettify code
+			jQuery('code').addClass('prettyprint');
+			jQuery('pre code').addClass('linenums');
+			
+			// Copy to clipboard with button
+			jQuery('pre:has(code)').prepend(function(){
+				return '<div class="clip-btn">copy to clipboard</div>';
+			});
+			jQuery('.clip-btn').zclip({
+				path:'/js/ZeroClipboard.swf',
+				copy: jQuery(this).next('code').text(),
+				afterCopy: function(){
+					jQuery(this).replaceWith('<div class="clip-btn">copied!');
+					}
+			});
+		});
+	</script>
+</html>
+<!-- END OF _layouts/default.html -->

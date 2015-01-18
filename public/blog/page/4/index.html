@@ -1,0 +1,601 @@
+
+<!doctype html>
+<!-- START OF _layouts/default.html -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" >
+		<meta content="width=device-width,initial-scale=1" name="viewport">
+		<meta content="Thoughts of a restless mind." name="description">
+		<meta content="Harvey Xia" name="author">
+		
+		<title>Harvey Xia</title>
+		<link href="/myfavicon.png" rel="icon">
+
+		<!-- Glisse Stylesheet -->
+		<link href="/stylesheets/glisse.css" rel="stylesheet" type="text/css">
+
+		<!-- Styles -->
+		<link href="/stylesheets/main.css" rel="stylesheet">
+		
+		<!-- Google webfonts -->
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Cousine">
+		
+		<!-- jQuery and plugins -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="/js/jquery.zclip.min.js"></script>
+
+		<!-- serial scroll -->
+		<script src="/js/jquery.scrollTo.min.js"></script>
+		<script src="/js/jquery.serialScroll.min.js"></script>
+		
+		<!-- Syntax highlighter -->
+		<link href="/stylesheets/prettify-hemisu.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="/js/prettify.js"></script>
+		
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-25655664-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+
+		<script src="/js/footnote.js" type="text/javascript"></script>
+
+		<!-- SNOWSTORM-->
+		<script src="/js/snowstorm-min.js"> </script>
+
+		<!-- snowstorm options -->
+		<script type="text/javascript">
+		snowStorm.autoStart = false;
+		snowStorm.snowColor = '#78B0F6';   // blue-ish snow!?
+		snowStorm.flakesMaxActive = 96;    // show more snow on screen at once
+		snowStorm.useTwinkleEffect = true; // let the snow flicker in and out of view
+		snowStorm.vMaxX = 5;
+		snowStorm.vMaxY = 3;
+		snowStorm.toggleSnow();
+		</script>
+
+		<!-- PHOTOS TAG / FANCY BOX PLUGIN -->
+
+		<script type="text/javascript">
+		    jQuery.noConflict(); // ender.js conflicts with jQuery
+		</script>
+		 
+		<!-- Load FancyBox -->
+		<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" />
+		<script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+		 
+		      <!-- Fix FancyBox style for OctoPress -->
+      <style type="text/css">
+      .fancybox-wrap { position: fixed !important; }
+      .fancybox-opened {
+        -webkit-border-radius: 4px !important;
+        -moz-border-radius: 4px !important;
+        border-radius: 4px !important;
+      }
+      .fancybox-close, .fancybox-prev span, .fancybox-next span {
+        background-color: transparent !important;
+        border: 0 !important;
+      }
+      </style>
+
+		 
+		<!-- Custom Scripts -->
+		<script language="Javascript" type="text/javascript">
+		    // ender.js gobbles jQuery's ready event: Use ender.js $ instead
+		    jQuery(document).ready(function() {
+		        jQuery(".fancybox").fancybox();
+		    });
+		</script>
+
+		<!--<link href="http://feeds.feedburner.com/turkeltaub" rel="alternate" title="Harvey Xia" type="application/rss+xml" />-->
+
+		<script type="text/javascript">	
+		// Easing equation, borrowed from jQuery easing plugin
+		// http://gsgd.co.uk/sandbox/jquery/easing/
+		jQuery.easing.easeOutQuart = function (x, t, b, c, d) {
+			return -c * ((t=t/d-1)*t*t*t - 1) + b;
+		};
+		
+		jQuery(function( $ ){
+			/**
+			 * Most jQuery.serialScroll's settings, actually belong to jQuery.ScrollTo, check it's demo for an example of each option.
+			 * @see http://flesler.demos.com/jquery/scrollTo/
+			 * You can use EVERY single setting of jQuery.ScrollTo, in the settings hash you send to jQuery.serialScroll.
+			 */
+			
+			/**
+			 * The plugin binds 6 events to the container to allow external manipulation.
+			 * prev, next, goto, start, stop and notify
+			 * You use them like this: $(your_container).trigger('next'), $(your_container).trigger('goto', [5]) (0-based index).
+			 * If for some odd reason, the element already has any of these events bound, trigger it with the namespace.
+			 */		
+			
+			/**
+			 * IMPORTANT: this call to the plugin specifies ALL the settings (plus some of jQuery.ScrollTo)
+			 * This is done so you can see them. You DON'T need to specify the commented ones.
+			 * A 'target' is specified, that means that #screen is the context for target, prev, next and navigation.
+			 */
+			$('.wrap').serialScroll({
+				target:'.outer-scroll',
+				items:'article', // Selector to the items ( relative to the matched elements, '#sections' in this case )
+				prev:'a.prev',// Selector to the 'prev' button (absolute!, meaning it's relative to the document)
+				next:'a.next',// Selector to the 'next' button (absolute too)
+				axis:'xy',// The default is 'y' scroll on both ways
+				navigation:'#navigation li a',
+				duration:700,// Length of the animation (if you scroll 2 axes and use queue, then each axis take half this time)
+				force:true, // Force a scroll to the element specified by 'start' (some browsers don't reset on refreshes)
+				
+				//queue:false,// We scroll on both axes, scroll both at the same time.
+				//event:'click',// On which event to react (click is the default, you probably won't need to specify it)
+				//stop:false,// Each click will stop any previous animations of the target. (false by default)
+				//lock:true, // Ignore events if already animating (true by default)		
+				//start: 0, // On which element (index) to begin ( 0 is the default, redundant in this case )		
+				//cycle:true,// Cycle endlessly ( constant velocity, true is the default )
+				//step:1, // How many items to scroll each time ( 1 is the default, no need to specify )
+				//jump:false, // If true, items become clickable (or w/e 'event' is, and when activated, the pane scrolls to them)
+				//lazy:false,// (default) if true, the plugin looks for the items on each event(allows AJAX or JS content, or reordering)
+				//interval:1000, // It's the number of milliseconds to automatically go to the next
+				//constant:true, // constant speed
+				
+				onBefore:function( e, elem, $pane, $items, pos ){
+					/**
+					 * 'this' is the triggered element 
+					 * e is the event object
+					 * elem is the element we'll be scrolling to
+					 * $pane is the element being scrolled
+					 * $items is the items collection at this moment
+					 * pos is the position of elem in the collection
+					 * if it returns false, the event will be ignored
+					 */
+					 //those arguments with a $ are jqueryfied, elem isn't.
+					e.preventDefault();
+					if( this.blur )
+						this.blur();
+					$pane.height( elem.clientHeight )
+				},
+				onAfter:function( elem ){
+					//'this' is the element being scrolled ($pane) not jqueryfied
+				}
+			});
+		});
+	</script>
+			
+		
+	</head>
+	<body onload="prettyPrint()">
+	
+		<div class="wrap">
+	
+			<header>
+				<div class="title"><a class="blogtitle" style="color:#333;" href="/">Harvey Xia</a></div>
+				
+				<div class="navi">
+					<ul>
+						<li><a href="/">Blog</a></li>
+						<li><a href="/travel">Travel</a></li>
+						<li><a href="/photography">Photography</a></li>
+						<li><a href="/blog/archives">Archives</a></li>
+						<li><a href="/about">About</a></li>
+					</ul>
+				</div> <!-- // .navi -->
+
+				
+			</header>
+			<section class="outer-scroll">
+				<section class="inner-scroll">
+		
+				<!-- START OF index.html -->
+
+	
+		
+		<!-- START OF _includes/article.html -->
+<article>
+	<header>
+		<h1><a href="/assertions-updating-the-context-set">Assertions: Updating the Context Set</a></h1>
+		<time>April 24, 2013</time>
+	</header>
+		<div class="content">
+			<p>In his article <a href="http://www.princeton.edu/~harman/Courses/PHI534-2012-13/Lepore/stalnaker78.pdf">“Assertion&#8221;</a>, Stalnaker gives a pragmatic account of the function of assertions in language. He states that assertions, when not rejected by other conversational participants, serve to reduce the context set of the conversation. Stalnaker uses the term ‘context set’ to refer to the set of all possible worlds that are compatible with the presuppositions of the speaker. For instance, in a conversation about upcoming weekend plans, the context set cannot include possible worlds where the speaker is talking with the philosopher Kant because such worlds do not accord with the presupposition that Kant is dead. Assertions reduce the context set by taking into account the content represented by the proposition asserted to the existing presuppositions. Increasing the number of things presupposed will necessarily lead to a reduction in the context set because the addition of new presuppositions rules out worlds incompatible with the proposition. For Stalnaker, a proposition is a “representation of the world as being a certain way,” and so determines a set of possible worlds. So another way of thinking about Stalnaker’s account of assertions is that when assertions are made, the intersection of the existing context set and the set of possible worlds represented by the proposition becomes the new context set. I will argue, however, that assertions can also function to broaden the context set. If this is true, then assertions function to update the context set rather than just restricting it, contrary to Stalnaker’s account.</p>
+
+<p>Stalnaker states that he does not offer this account as a sufficient definition of assertion, but rather as one component of an adequate definition. Although he makes some remarks about the reason why assertions cannot be sufficiently defined by this effect alone, he does not mention anything about assertions being able to broaden the context set. It seems to me that such assertions occur regularly, even in “non-nondefective” conversations where the speakers initially presuppose the same things. If assertions can in fact broaden the context, Stalnaker’s account of this particular function of assertions is inadequate.</p>
+
+<p>Suppose two friends are deciding on what type of restaurant to go to. They typically prefer pizza and have only ever been to pizza restaurants. One of them asks, “What pizza place do you want to go to?” On this particular day, however, the other replies, “We might eat somewhere other than a pizza place,” and the other agrees. The initial context set only included worlds where the two are eating at pizza restaurants. It seems that the new context set includes worlds where the two are eating at restaurants that both serve pizza and do not (assuming that the speaker did not mean to rule out possible worlds where the two still went to a pizza restaurant).</p>
+
+<p>But there arises a problem. What is semantically expressed by propositions of the form, “It might be that,” or “It could be that,” turns out to be either necessarily true or necessarily false for all the worlds in the context set. The semantic content of “We might eat somewhere other than a pizza place” is that there is some world Φ in the context set in which the two are not eating at a pizza place. In the existing context set, there either is a world Φ or there isn’t. If Φ does exist in the context set, then for every possible world in the context set, the proposition is true.  But in the pizza case, since it was presupposed by both speakers that they would eat at a pizza place, the world Φ is not in the context set. Therefore, the statement “We might eat somewhere other than a pizza place” is necessarily false relative to every possible world in the context set.</p>
+
+<p>This violates the principle that Stalnaker takes to be a necessary for rational communication: a proposition asserted must be true in some but not all of the possible worlds in the context set. This principle seems obvious because otherwise the proposition expressed would not be advancing the conversation in any way since it is either trivially true or trivially false. If we assume that the speaker is rational and intends on engaging in a genuine conversation, it seems wrong to interpret his statement as asserting a proposition that is trivially false. Something else seems to be happening. Thus, the fact that the statement is trivially false triggers a pragmatic, Gricean reinterpretation. The speaker wishes to communicate something other than what is literally asserted by the utterance. Given that the statement is false at all possible worlds in the context set, it seems that the speaker wishes to broaden the context set to include possible worlds in which the two are not eating at a pizza place. I will explain how this is possible.</p>
+
+<p>If the other speaker agrees, the context set is broadened to now include the world(s) Φ where they are not eating at a pizza place. Consequently, what’s true for the worlds in the context set has changed. Now, there are worlds for which it is possible that the two might eat at a non-pizza place. The new context set is the result of the union of the previous context set and the set of possible worlds represented by the asserted proposition. But once the context set is updated to include world Φ, there remains the problem that now the statement is trivially true. One solution to this problem is that what is possible at each of the possible worlds is different. At some set of worlds in the context set, it is possible that they will eat at a pizza place. At some other set of worlds in the context set, it is possible that they will eat at a non-pizza place. I offer this only as a mere gesture towards what an adequate solution may be. For the purposes of this paper, I assume that such a solution is possible. The exact details of that solution are not critical to my argument.</p>
+
+<p>The statement is no longer trivially false because it accords with the principle that the proposition asserted is true in some but not all of the worlds in the context set. The speaker has successfully advanced the conversation by broadening the context set. This claim runs contrary to Stalnaker’s notion that the new context set is the result of the intersection of the existing context set and the set of worlds represented by the proposition asserted. I see no reason why the context set cannot be changed by either the intersection or the union of itself with an asserted proposition, depending on whether the assertion is intended to restrict or broaden the context set, respectively. It seems more accurate to say that conversations are advanced when the context set is updated in some way, rather than only restricted.</p>
+
+<p>Statements of the form “It might be the case that…” or “It could be the case that…” often signal an assertion that broadens the context set. One might argue that such statements are not assertions, but some other linguistic move that functions differently. These sorts of utterances, however, do seem to be assertions. When he says “We might eat somewhere other than a pizza place” he is really asserting the proposition that represents the set of worlds in which the two are eating at a non-pizza restaurant, along with expressing his desire that the other speaker accept this assertion.</p>
+
+<p>Philosophical skeptics often make these statements. If a skeptic utters, “We could be experiencing a dream right now,” he is asserting the proposition that represents the worlds in which the speaker is dreaming. It would be unfair to think that skeptical utterances cannot be assertions; certain types of skeptical utterances, especially philosophical ones, aim expressly to break down certain presuppositions, opening up new possible worlds to consider in the discussion.</p>
+
+<p>To defend this claim of mine, it is important to consider why Stalnaker thinks of assertions as functioning solely to restrict the context set. Stalnaker accounts for assertions in this way because the point of a conversation (or at least, the type of conversation in which assertions are employed) is to locate the actual world that the speakers are in. By restricting the context set and limiting the set of possible worlds as live options, the speakers hope to eventually reach a point where only one possible world remains, that one being the real world. Of course, this is only a brief sketch of what actually happens. Different conversations would require different degrees of certainty; a conversation centered on diagnosing a patient would demand that only a single world be left as a live option, so that the doctors know exactly how to treat him. In a conversation about a sports game between two speakers who don’t particular care about sports, the speakers would be satisfied with a number of possible worlds as live options (“The Celtics won, but the final score was either 98-78 or 99-76”).</p>
+
+<p>Given the goal of locating the actual world within the context set, it very well might be the case that a mistake was made by the speakers and the actual world was ruled out by certain false presuppositions. If, as Stalnaker suggests, the role of assertions is to locate the actual world, then it seems perfectly justified, perhaps even necessary, that assertions also function to broaden the context set in such situations. As mentioned above, Cartesian philosophical skeptics make certain statements to account for the possibility that the world is just an illusion orchestrated by an evil demon. Since they are aiming to uncover a metaphysical truth (attempting to locate the real world within the context set), the skeptics are indeed making assertions.</p>
+
+<p>Perhaps another example will make this point clearer. Consider a murder investigation. Two detectives are examining the crime scene and debating possible suspects given the available evidence. They suspect that either the maid or the wife committed the murder, and so the context set contains the possible worlds where the maid or wife committed the crime. Suddenly one of the detectives receives a phone call from an informant telling him that there is strong evidence implicating the butler. This detective then utters, “The butler could have done it.” It is perfectly reasonable to interpret this statement as asserting the proposition that represents the possible worlds in which the butler committed the murder, thus expanding the context set (because otherwise the assertion would be trivially false, violating one of basic conversational principles regarding assertions). After all, the detectives are there to find out who killed the victim. If evidence arises implicating the butler, it seems logically necessary to expand the context set to include worlds in which the butler is the murderer, if the actual world is to be accurately located.</p>
+
+<p>It is not a justified defense to claim that statements that broaden the context set are not assertions. Statements that broaden the context set have the same purpose that Stalnaker suggests for assertions that reduce the context set — to update the context set in hopes of locating the actual world. If the speaker’s hold a mistaken presupposition and the actual world is not within the current context set, it is necessary to broaden the context set to contain the set possible worlds where the real world might be located. Given that locating the real world is the purpose for making assertions, it is insufficient to account for assertions as only reducing the context set. The essential function of assertions seems to be that they update the context set, both by restricting and by expanding it. </p>
+
+<p>Works Cited</p>
+
+<ol>
+<li>Robert Stalnaker, “Assertion,” Syntax and Semantics, ed. J. Kimball. Vol. 9, 1978 Academic   Press (New York), pp. 315-332.</li>
+</ol>
+
+
+		</div>
+	<footer>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=226764337380094";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+
+		<div style="display:inline-block">
+			
+
+
+		
+
+
+
+  
+		
+			Tagged under
+		
+    <a class='category' href='/blog/categories/philosophy/'>Philosophy</a>
+	
+
+
+		</div>
+
+		<div style="top:5px; float:right;"class="fb-like" data-href="http://www.harveyxia.com//assertions-updating-the-context-set" data-width="500" data-layout="button_count" data-action="recommend" data-show-faces="true" data-share="true"></div>
+	
+	
+	</footer>
+	
+</article>
+<!-- END OF _includes/article.html -->
+
+	
+		
+		<!-- START OF _includes/article.html -->
+<article>
+	<header>
+		<h1><a href="/octopress-and-the-hacker-aesthetic">Octopress and the Hacker Aesthetic</a></h1>
+		<time>April 23, 2013</time>
+	</header>
+		<div class="content">
+			<p>I&#8217;ve migrated my website from Wordpress to Octopress. Octopress has a much cleaner underlying code structure, which makes it easy for me to customize how I want my website to look and function. The only catch is that implementing these customizations is much more technical than in Wordpress; everything is done throug the command line, and there is no user-friendly GUI to help you out.</p>
+
+<p>But this difficulty is less a hassle for me than it is a fun challenge. My interest in programming and web development/design has really taken over my semester. I&#8217;m currently learning Ruby on Rails, which also entails that I improve my facility with HTML and CSS. I plan on getting started learning Javascript (and jQuery and Coffeescript) as soon as I can.</p>
+
+<p>Wikipedia defines Hacker as such; &#8220;In home and hobby circles, a hacker is a person who enjoys exploring the limits of what is possible, in a spirit of playful cleverness. They may also heavily modify software or hardware of their own computer system.&#8221;</p>
+
+<p>I certainly love breaking things and customizing them to make them my own, but something about what I call the Hacker Aesthetic also appeals to me. Computer programmers have this principle DRY: Don&#8217;t Repeat Yourself. Every effort is made to streamline code by eliminating redundancy and achieving the desired outcome in the most efficient way possible. In a sense, it&#8217;s the technical manifestation of the artistic concept of minimalism, something that I value in music. All of my favorite musicians/composers have minimalist tendencies: Miles Davis, Brad Mehldau, Robert Glasper, just to name a few epitomical examples.</p>
+
+<p>Perhaps the most tangible examples of the Hacker Aesthetic are modern websites. These sites use modern coding techniques to create fast, clean, and elegant websites both in appearance and function. Check out <a href="http://artsy.net/">artsy</a>, <a href="https://www.tumblr.com/">tumblr</a>, and <a href="http://origami.co/">origami</a>.</p>
+
+<p>Less obvious to people who haven&#8217;t had experience with programming is the simple fact that well written code just looks good. This is what my text editor looks like with code.</p>
+
+<p><img src="/images/code.png" width="500"></p>
+
+<p>So for now, the plan is to keep exploring computer programming and, along the way, enjoy the beauty of the Hacker&#8217;s Aesthetic.</p>
+
+		</div>
+	<footer>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=226764337380094";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+
+		<div style="display:inline-block">
+			
+
+
+		
+
+
+
+  
+		
+			Tagged under
+		
+    <a class='category' href='/blog/categories/blog/'>Blog</a>
+	
+
+
+		</div>
+
+		<div style="top:5px; float:right;"class="fb-like" data-href="http://www.harveyxia.com//octopress-and-the-hacker-aesthetic" data-width="500" data-layout="button_count" data-action="recommend" data-show-faces="true" data-share="true"></div>
+	
+	
+	</footer>
+	
+</article>
+<!-- END OF _includes/article.html -->
+
+	
+		
+		<!-- START OF _includes/article.html -->
+<article>
+	<header>
+		<h1><a href="/mental-state-theory-an-inadequate-picture-of-happiness">Mental State Theory: An Inadequate Picture of Happiness</a></h1>
+		<time>April 17, 2013</time>
+	</header>
+		<div class="content">
+			<h1></h1>
+
+<p>In investigating questions of human happiness, it’s important to explore the very concept of happiness itself. Unfortunately, this word is used in myriad contexts and comes loaded with many meanings. For the purposes of this article, I will use the term to refer to the deeper type of happiness that we associate with human flourishing — the type of happiness we mean when we ask ourselves the question, “Am I <em>really</em> happy?”</p>
+
+<p>Questioning this type of happiness itself will hopefully bring into focus a better picture of the nature of happiness and its role in human flourishing, as well as introduce important questions that must be addressed in giving an adequate account of happiness. Though I acknowledge the fact that happiness has an inescapably subjective nature — after all, each of us is made happy by different things — I think we can still hold meaningful discussions about the objective aspects of happiness, namely, what it is that we think happiness <em>consists</em>.</p>
+
+<p>Instead of attempting to answer this question directly (which would require much more than one article), I will dispute the common belief that happiness only consists of mental states, or that to be happy means to be in a certain psychological state. This particular conception of happiness is widespread. Popular moral theories, including many (although not all) variants of Utilitarianism, rest on the idea that what humans desire are positive mental states, or pleasure. Furthermore, it seems to me that in our every day lives, our default intuition seems to support decisions that maximize the pleasure of ourselves or others. It requires deeper reflection to <em>override</em> this default concern for mental states for the sake of some other value. A common example of this is when somebody accepts that they have done something wrong — his initial instinct is not to admit his fault, for that would invoke feelings of shame and guilt. But upon further reflection, he realizes that the better action is to apologize and recognize his fault for whatever reason (so that he can avoid making the same mistake next time, or that he can become a better person, etc.).</p>
+
+<p>In challenging this simple and compelling notion of happiness as purely a psychological state, the philosopher Robert Nozick employed a well-known thought experiment known as “The Experience Machine.” Imagine sometime in the future in which human beings have the technology and the understanding of neurophysiology to construct a machine that can perfectly produce any psychological state. Once plugged in, the individual’s thoughts and beliefs can be altered in any way — he can be made to think that he is the greatest writer in the world, the greatest musician, the most wealthy, the best looking, the most popular, the most well-liked, etc. He can be made to believe, and more importantly <em>feel as if</em>, his life is perfect in every aspect; his days would be filled with nothing but elation and contentment. Assume that, while in the Experience Machine, the individual believes everything he is experiencing is real, i.e., he is not aware of being in an experience machine, and further, has no memory of being plugged in.</p>
+
+<p>Would you plug in? Nozick believed that most people would say no, especially when given enough time to think about it. This intuitive answer does not cohere with the view that happiness is constituted only by mental states. The Experience Machine can give us the best mental states imaginable, so why would we (or at least most of us) turn down the chance to plug in?</p>
+
+<p>A common response in defense of mental state theories is that the thought experiment is too removed from our reality. The thought experiment is too abstract, or perhaps just too foreign, for us to consider and thus cannot yield any real insight into what we think of as happiness. But this thought experiment is not as far from reality as we think. Consider alcohol or recreational drugs. People consume these substances in order to make themselves feel a certain way. But because of the damaging side effects, many people do not think the experience worth it. Is it so hard to imagine a type of drug that exaggerates the effects of, for example, heroin, and does not have any negative side effects? If not, then it seems that at least a crude version of the experience machine is not so far from our reality, after all.</p>
+
+<p>If this answer still isn’t satisfactory, consider the following alternative scenario, which is not only possible, but happens in some form or another quite regularly: Imagine someone who is happily married to a wife whom he loves more than anything. He genuinely believes that his wife loves him in the same way, but in reality, she doesn’t love him at all. In reality, she is cheating on him and can put on a perfect act to make her husband believe the contrary. Should we say that the husband is truly happy, in the sense of <em>flourishing</em>? Is that the kind of “happiness” you would want for yourself? Put another way, if we compare two men, both of whom believe that they are loved by their wives, but only one of who actually is, would we say that they are equally well off? Or does the one with a truly loving wife have greater claim to being <em>truly</em> “happy”?</p>
+
+<p>Having established that the Experience Machine (or the alternative experiment) is valuable to use as a thought experiment, I return to the question of why our intuition tells us to reject the offer to plug in to the machine. The answer is simple: we believe that happiness is more than just a psychological state. We value something else beyond simply experiencing certain emotions and believing certain things — we value <em>actually accomplishing</em> the things we think we are accomplishing and <em>actually being</em> the person we think we are. Striving to do things and to become a certain person seems completely meaningless if it all takes place in our heads. We pity the beguiled husband even though he believes that he is in a perfect marriage, because in reality, the marriage is broken. However, this position does not commit us to saying that mental states play <em>no</em> role in happiness. Rather, the claim I wish to advance is that mental states do not play the <em>only</em> role in happiness.</p>
+
+<p>The question remains: What else do we value in our happiness? What else <em>should</em> we value in happiness? The question seem closely connected to what we <em>value </em> in that, what we value gives us a framework for evaluating whether or not any given individual is truly happy, and further, for determining how to live our lives in pursuit of happiness. For instance, someone who values that his life be grounded in reality and not some imaginary virtual machine will not think consider life in the Experience Machine to be one of genuine happiness.</p>
+
+<p>After hearing these arguments, some may still want to plug in. If I asked these individuals to compare the <em>same</em> life in the experience machine, and the same life outside of the experience machine, however, I suspect most of them would regard the life outside the machine as “better” in some way. In this paper I have not argued <em>why</em> life outside the experience machine is the better alternative, or, more generally, why happiness <em>should</em> <em>not</em> consist only of mental states. This would involve a discussion of what we value and find meaningful. In this article, I hope to have at least shown that for most of us, who <em>do</em> have the intuition to refuse the experience machine, mental states are clearly not enough. Perhaps actual success or the actual possession of goods like truth, love, beauty, dignity, and freedom are intrinsically valuable and thus play a role in happiness.</p>
+
+<p><em>Originally published in Flourish, Yale’s Undergraduate Journal for the Interdisciplinary Study of Human Flourishing</em></p>
+
+		</div>
+	<footer>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=226764337380094";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+
+		<div style="display:inline-block">
+			
+
+
+		
+
+
+
+  
+		
+			Tagged under
+		
+    <a class='category' href='/blog/categories/philosophy/'>Philosophy</a>
+	
+
+
+		</div>
+
+		<div style="top:5px; float:right;"class="fb-like" data-href="http://www.harveyxia.com//mental-state-theory-an-inadequate-picture-of-happiness" data-width="500" data-layout="button_count" data-action="recommend" data-show-faces="true" data-share="true"></div>
+	
+	
+	</footer>
+	
+</article>
+<!-- END OF _includes/article.html -->
+
+	
+		
+		<!-- START OF _includes/article.html -->
+<article>
+	<header>
+		<h1><a href="/brad-mehldaus-my-favorite-things">Brad Mehldau&#8217;s &#8220;My Favorite Things&#8221;</a></h1>
+		<time>February 06, 2013</time>
+	</header>
+		<div class="content">
+			<h1></h1>
+
+<p>Jazz musicians and educators always make comparisons between jazz improvisation and language. They talk of expanding one’s “jazz vocabulary” and “pacing” one’s solos effectively. They say that the best solos “tell a story.” In this way, the jazz soloist is analogous a rhetorician giving an improvised speech, attempting saying something meaningful to the audience. But sometimes, as is often the case with many of my favorite recordings, the artist seems engage in a soliloquy, full of introverted reflections. To name off the top of my head some musicians who do this a lot — Miles Davis, Wes Montgomery, and Bill Evans.</p>
+
+<p> </p>
+
+<p><img src="http://i.ytimg.com/vi/gClg7L_vqes/0.jpg" alt="" /></p>
+
+<p> </p>
+
+<p>Brad Mehldau’s live recording of “My Favorite Things” is one such recording, and it’s one that means a lot to me both aesthetically and philosophically: the music itself simply sounds beautiful, and the emotions and thoughts it invokes in me are profound. Here is a <a href="http://www.youtube.com/watch?v=X7fVnvJSRb4">link</a> to the piece.</p>
+
+<p>In an <a href="http://www.huffingtonpost.com/joseph-vella/brad-mehldau-the-art-of-s_b_823026.html">interview</a> with the Huffington Post, Mehldau said:</p>
+
+<blockquote><p>“One fun surprise of this concert was “My Favorite Things.” It was not something I had played before – the Coltrane version is sacred to me. But I was going out for an encore and thought of it at the last moment, and it turned out to be for me anyways, one of the more compelling performances in the set – it had that story to it; it just kind of unfolded. Sometimes you find that and sometimes you don’t; sometimes you find it with no preparation or context at all and those moments are always great for me.”</p></blockquote>
+
+<p>The piece seems even more impressive considering that it was spontaneous. But I guess you can hear that in the recording, how it progresses so naturally from a simple introduction to a compelling climax down to an ending. The recording really does sound like a soliloquy. We seem to be hearing the depths of Mehldau’s consciousness expressed musically. You know, those deep thoughts that exist but remain unknown to us until, in solitude, they gradually become lucid. This happens to me a lot during walks in quiet, peaceful places. For artists, I would imagine it happens during those rare instances of perfect artistic inspiration.</p>
+
+<p>I listen to this piece a lot when I’m feeling melancholic, introverted, thoughtful, nostalgic, or any other feeling that would make me temporarily anti-social and weird. Anyhow, I thought I’d share this piece. Hopefully you hear something in it that you can relate to.</p>
+
+		</div>
+	<footer>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=226764337380094";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+
+		<div style="display:inline-block">
+			
+
+
+		
+
+
+
+  
+		
+			Tagged under
+		
+    <a class='category' href='/blog/categories/listening/'>Listening</a>
+	
+
+
+		</div>
+
+		<div style="top:5px; float:right;"class="fb-like" data-href="http://www.harveyxia.com//brad-mehldaus-my-favorite-things" data-width="500" data-layout="button_count" data-action="recommend" data-show-faces="true" data-share="true"></div>
+	
+	
+	</footer>
+	
+</article>
+<!-- END OF _includes/article.html -->
+
+	
+		
+		<!-- START OF _includes/article.html -->
+<article>
+	<header>
+		<h1><a href="/music-as-sound-sound-as-music">Music as Sound, Sound as Music</a></h1>
+		<time>December 19, 2012</time>
+	</header>
+		<div class="content">
+			<h1></h1>
+
+<p>Leaning forward in my chair, I gripped my saxophone in anticipation. It was my first rehearsal with the Senior Massachusetts Youth Wind Ensemble, the first musical group to ever intimidate me with its degree of talent and level of perfection. Widely regarded as one of the top wind ensembles in the world, the group is led by Michael Mucci — a conductor, educator, and mentor whom I admire deeply. During his opening remarks he said a curious thing.</p>
+
+<p>“You are all here because you love sound.”</p>
+
+<p>Strange, I thought. Why would he use the word sound? In my mind, the word “sound” stood uncomfortable close to “noise.” I wasn’t just producing mere sounds; I was making music — an art that requires skill and refinement, an art that is the opposite of noise. But for some reason, his words remained in the back of my mind and their meaning grew clearer as I matured musically through my high school years. Before this, however, I had to learn that listening to music is just as much a craft as making music.I didn’t always know how to listen to music well, and I still have a lot to learn. I remember how teachers would recommend that I listen to recordings like Miles Davis’ Kind of Blue and John Coltrane’s A Love Supreme, and how I would get bored after a few minutes. I thought it was because I didn’t understand the music theory underlying the jazz. But after devoting much time to learning about chord progressions and two-fives and secondary dominants, I still could not enjoy these records. Understanding that the tune “So What” has a modal structure that modulates up a half step in the bridge did not help me at all in appreciating the track.</p>
+
+<p>Eventually, I was introduced to the concept of tone. Teachers emphasized the importance of developing a unique sound, asking me questions like “How would you describe your sound?” Dark, rounded, and pure, I would say. I knew that good tone was an important aspect of musicianship, but I hadn’t thought about it as something up to the musician to define. Miles Davis was always championed as having the quintessentially unique voice, so I began paying more attention to the way his trumpet sounded, not just the notes he played. With this attitude of listening for how things sounded holistically rather than how the notes were arranged, I gave Kind of Blue another shot. This time, I found myself able to sit through the full nine minutes of each track with a sustained interest. Instead of fixating on that particular bluesy lick that Cannonball played or the pentatonic scale that Coltrane used, I focused on how the richness of Bill Evan’s chords complemented Miles’ subdued tone. I noticed the contrast between the distinct sounds of Coltrane, Cannonball, and Miles, and how that lent the album a mosaic-like quality. I absorbed the recording’s general chilled, quiet, impressionistic ethos. I could go on about what I love about the album, but the point is that a simple shift in my listener’s attitude was all that I needed to understand the music. Studying jazz theory was unnecessary because listening to music involves something much more fundamental — it involves the skill of listening to sound.</p>
+
+<p>I approached both new and familiar pieces of music with this new philosophy, asking the question: What kinds of sounds are these artists attempting to create? Sound, of course, gets conveyed in many different forms. In jazz, for example, the artist’s phrasing, tone, dynamics, intonation, rhythmic and melodic choices all characterize his sound. In classical, the composer’s orchestration and compositional choices as well as the performer’s interpretive choices comprise the sound. With this attitude, I listened with more focus; with more attention to subtle nuances and with more awareness of the piece as a whole. The result was that I appreciated a greater variety of music to a greater degree. Intrigued by new and unfamiliar sounds, I was less inclined to avoid music whose style wasn’t immediately familiar to me. That being said, I was not able to simply dive into the avant-garde. But I was able to immerse myself in the sound of a lesser-known, more unique composer such as Mahler or Tord Gustavsen.</p>
+
+<p>And at its very core, music is just this — sound. After the last chord of every concert with the Massachusetts Youth Wind Ensemble, my heart raced and my mind marveled at how magnificently the sound reverberated throughout the concert hall — entire seconds of sustained acoustic glory. The audience seemed to be equally mesmerized, remaining silent for a few seconds after the note had died out before applause broke out. A friend of mine went to one such concert and said to me afterwards, “The concert was amazing! Especially that last piece, there was just so much sound coming from all directions.” He had never studied music before and was able to enjoy a classical concert. Most people think jazz and classical music, or any type of non-pop music, are esoteric art forms, inaccessible to those who are untrained and inexperienced. But my near decade of intensive musical training and experience has only made me realize that this isn’t the case. Music is not about mastering the technicalities of a particular genre and being able to play specific notes in a specific style in a specific order. Music is about developing and expressing our natural, human instinct to produce different sounds and appreciate how they interact and combine in beautiful ways.</p>
+
+<p>Later, my new understanding of music changed the way I hear everything around me, not just sounds in the concert hall or the practice room. Being a musician naturally made me more sensitive to any sound at all, and this came at a cost. For instance, when someone on my floor forgets to turn off their alarm and I’m in my room, struggling to write a paper, unable to ignore its constant blaring. Or when on a weekend morning the sound of a dozen high-powered leaf blowers, all humming at a slightly off-tune pitch, wakes me up from my lazy sleep. And try as I might, I simply cannot soundproof my room from the commotion that inevitably fills Old Campus every weekend night: drunken yelling, piercing screeches, blaring music, and senseless whoops. For someone who prefers quiet, being so hearing-sensitive makes Yale a very loud place indeed.</p>
+
+<p>But then again, a heightened awareness of sounds can be refreshing. Now, sitting by an open window during summer nights, I am able to enjoy the concert of crickets — a cacophony during which polyrhythms emerge and evolve through a series of interlocking rhythms and pitches. And I love when the rich and dissonant call of a train echoes through the quietness of the weekday night, each time with a different blend of notes. My walk these days in the woods can be transformed into something memorable when a particularly lyrical bird sings a song. The ability to hear — to really hear — the sounds of the outside world adds a deeper dimension to my experiences. A memory of a trip to New York City would be incomplete without recalling the chaotic urban sounds of car honks, footsteps, and crowded murmuring. A climb to the summit of a mountain would be diminished without noticing the utterly imposing silence.</p>
+
+<p>Learning to hear music as sound taught me how to hear sound as music. After all, music and sound are not separate realms, and neither are the concert hall and the city streets. It is all part of one single sonic environment that our ears inhabit. So the next time you are in the mood for music, try something new; maybe put on Kind of Blue. If you are feeling adventurous the next time you are out and about, try listening to the world as a recording studio full of new and experimental sounds.</p>
+
+		</div>
+	<footer>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=226764337380094";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+
+		<div style="display:inline-block">
+			
+
+
+		
+
+
+
+  
+		
+			Tagged under
+		
+    <a class='category' href='/blog/categories/essays/'>Essays</a>, <a class='category' href='/blog/categories/featured/'>Featured</a>, <a class='category' href='/blog/categories/listening/'>Listening</a>
+	
+
+
+		</div>
+
+		<div style="top:5px; float:right;"class="fb-like" data-href="http://www.harveyxia.com//music-as-sound-sound-as-music" data-width="500" data-layout="button_count" data-action="recommend" data-show-faces="true" data-share="true"></div>
+	
+	
+	</footer>
+	
+</article>
+<!-- END OF _includes/article.html -->
+
+	
+	
+<!-- <div class="pagination">
+	
+		<a class="older" href="/blog/page/5/">Older</a>
+	
+	
+	<span class="total">4 of 9</span>
+	
+	
+		<a class="newer" href="/blog/page/3/">Newer</a>
+	
+</div> &#8211;>
+<!-- END OF index.html -->
+
+
+				</section>
+
+			</section>
+		
+			<footer>
+				Copyright &copy; 2015
+<a href="https://plus.google.com/110002267502068018090?rel=author">
+
+	Harvey Xia
+
+</a>
+			</footer>
+			
+		</div> <!-- // .wrap -->
+	</body>
+	<script>
+		jQuery(document).ready(function() {
+			// Make images center
+			jQuery('p:has(img)').css('text-align', 'center');
+			
+			// Add the image's title attribute as a caption
+			// jQuery('p:has(img)').append(function () {
+			// 	return '<div class="caption">' + jQuery('img', this).attr('title') + '</div>';
+			// });
+			
+			// Prettify code
+			jQuery('code').addClass('prettyprint');
+			jQuery('pre code').addClass('linenums');
+			
+			// Copy to clipboard with button
+			jQuery('pre:has(code)').prepend(function(){
+				return '<div class="clip-btn">copy to clipboard</div>';
+			});
+			jQuery('.clip-btn').zclip({
+				path:'/js/ZeroClipboard.swf',
+				copy: jQuery(this).next('code').text(),
+				afterCopy: function(){
+					jQuery(this).replaceWith('<div class="clip-btn">copied!');
+					}
+			});
+		});
+	</script>
+</html>
+<!-- END OF _layouts/default.html -->
